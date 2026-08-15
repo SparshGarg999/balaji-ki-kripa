@@ -22,11 +22,11 @@
   <div id="app" class="app-wrapper">
     
     <!-- ================= 1. MODERN TOP BAR ================= -->
-    <header class="app-header">
+    <header class="app-header" id="appMainHeader">
       <div class="header-inner">
         
         <!-- Brand Logo & Name -->
-        <div class="brand-block">
+        <div class="brand-block" id="brandHomeBtn">
           <div class="brand-logo-modern">
             <svg viewBox="0 0 48 48" class="logo-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="24" cy="24" r="23" fill="url(#logo-grad)" stroke="#FFB74D" stroke-width="2"/>
@@ -52,7 +52,7 @@
           </div>
         </div>
 
-        <!-- Right Quick Controls: Language Switch & Profile -->
+        <!-- Right Quick Controls: Language Switch & Sevadar Gateway -->
         <div class="header-right-actions">
           <!-- Modern Language Toggle Pill -->
           <button class="lang-toggle-btn" id="langSwitchBtn" title="Switch Language">
@@ -60,9 +60,9 @@
             <span class="lang-label" id="currentLangText">हिंदी</span>
           </button>
 
-          <!-- Profile / Admin Portal -->
-          <button class="profile-avatar-btn" id="userProfileBtn" title="Profile & Admin">
-            <span>👤</span>
+          <!-- Discreet Admin Portal Entry for Authorized Sevadars -->
+          <button class="admin-door-btn" id="adminDoorBtn" title="Authorized Sevadar Portal">
+            <span>🔐</span>
           </button>
         </div>
 
@@ -121,6 +121,23 @@
               <p>Book & Samagri Batches</p>
             </div>
             <span class="tile-arrow">➔</span>
+          </div>
+        </div>
+
+        <!-- Order & Seva Quick Tracker Search Bar -->
+        <div class="modern-card track-search-card">
+          <div class="track-header">
+            <span class="track-icon">🔍</span>
+            <div>
+              <h4 data-key="quickTrackTitle">Track Your Seva / Order Status</h4>
+              <p data-key="quickTrackSub">Enter your Reference ID (e.g. SWM-1082 or ORD-5021)</p>
+            </div>
+          </div>
+          <div class="track-input-group">
+            <input type="text" id="quickTrackInput" placeholder="Enter Ref ID (#SWM-... / #ORD-...)">
+            <button class="modern-btn btn-primary" id="quickTrackBtn">
+              <span data-key="btnTrack">Track 🚚</span>
+            </button>
           </div>
         </div>
 
@@ -183,13 +200,13 @@
 
           <!-- Video Cards Grid -->
           <div class="video-feed-grid" id="ytVideosContainer">
-            <!-- Dynamic Video Cards with Embed & Watch on YouTube -->
+            <!-- Dynamic Video Cards with Embed & Direct Channel Links -->
           </div>
         </div>
 
       </section>
 
-      <!-- ================= VIEW 2: SAWAMANI SEVA (4 FIELDS ONLY + ₹11,000) ================= -->
+      <!-- ================= VIEW 2: SAWAMANI SEVA (4 FIELDS ONLY + EMAIL FOR RECEIPT) ================= -->
       <section id="sawamaniSection" class="view-panel">
         
         <!-- Header Banner -->
@@ -223,7 +240,7 @@
         <!-- 4-FIELD SIMPLE SAWAMANI SANKALP FORM -->
         <div class="modern-card">
           <h3 class="form-title" data-key="sankalpFormTitle">Devotee Sankalp Form</h3>
-          <p class="form-sub" data-key="sankalpFormSub">Please fill all 4 details accurately for Mahaprasad dispatch</p>
+          <p class="form-sub" data-key="sankalpFormSub">Please fill all details accurately for Mahaprasad dispatch and email receipt</p>
 
           <form id="sawamaniSimpleForm" class="clean-form">
             
@@ -237,6 +254,12 @@
             <div class="form-group">
               <label for="sawamaniPhone" data-key="labelPhone">2. Mobile / WhatsApp Number (मोबाइल नंबर) *</label>
               <input type="tel" id="sawamaniPhone" required placeholder="e.g. +91 98765 43210">
+            </div>
+
+            <!-- Optional Email for Direct Receipt PDF -->
+            <div class="form-group">
+              <label for="sawamaniEmail" data-key="labelEmail">Email Address for Digital Receipt (ईमेल पता - रसीद हेतु)</label>
+              <input type="email" id="sawamaniEmail" placeholder="e.g. devotee@gmail.com">
             </div>
 
             <!-- Field 3: Full Postal Address -->
@@ -288,15 +311,16 @@
 
       </section>
 
-      <!-- ================= VIEW 4: MY SEVAS & BOOKINGS ================= -->
+      <!-- ================= VIEW 4: MY SEVAS & TRACKING ================= -->
       <section id="ordersSection" class="view-panel">
         
         <div class="page-top-banner">
           <span class="pill-tag" data-key="mySevasPill">📋 DEVOTEE HISTORY</span>
           <h2 data-key="mySevasHeading">My Sevas & Orders</h2>
-          <p data-key="mySevasSub">Sawamani Bookings & Store Orders</p>
+          <p data-key="mySevasSub">Live Tracking, Digital Receipts & Booking History</p>
         </div>
 
+        <!-- Segmented Tabs -->
         <div class="segmented-control">
           <button class="seg-btn active" data-tab="sawamaniRecords" data-key="tabSawamani">🍯 Sawamani (सवामणि)</button>
           <button class="seg-btn" data-tab="storeRecords" data-key="tabStore">📦 Store Orders (ऑर्डर्स)</button>
@@ -304,19 +328,19 @@
 
         <div id="sawamaniRecords" class="seg-content active">
           <div class="records-feed" id="sawamaniRecordsList">
-            <!-- Dynamic Sawamani Bookings -->
+            <!-- Dynamic Sawamani Bookings with Live Step Tracker -->
           </div>
         </div>
 
         <div id="storeRecords" class="seg-content">
           <div class="records-feed" id="storeRecordsList">
-            <!-- Dynamic Store Orders -->
+            <!-- Dynamic Store Orders with Live Step Tracker -->
           </div>
         </div>
 
       </section>
 
-      <!-- ================= VIEW 5: PROFILE & ADMIN DASHBOARD ================= -->
+      <!-- ================= VIEW 5: PROFILE & SUPPORT ================= -->
       <section id="profileSection" class="view-panel">
         
         <!-- User Card -->
@@ -356,67 +380,173 @@
               <span class="settings-icon">📞</span>
               <div>
                 <h4 data-key="settingHelp">Helpline & WhatsApp Support</h4>
-                <p>Official Temple Desk</p>
+                <p>+91 98765 43210 (Official Desk)</p>
               </div>
             </div>
             <span class="settings-arrow">›</span>
           </div>
 
-          <!-- Restricted Admin Button -->
-          <div class="settings-row admin-row" id="openAdminModalBtn">
+          <!-- Direct Link to Sevadar Login -->
+          <div class="settings-row" id="profileSevadarPortalRow">
             <div class="settings-left">
-              <span class="settings-icon lock-icon">🔐</span>
+              <span class="settings-icon">🛡️</span>
               <div>
-                <h4 class="text-danger" data-key="settingAdmin">Admin Command Center</h4>
-                <p data-key="settingAdminSub">Authorized Sevadars & Temple Admin only</p>
+                <h4 data-key="settingSevadar">Authorized Sevadar Portal</h4>
+                <p data-key="settingSevadarSub">Temple Management & Dispatch Desk</p>
               </div>
             </div>
             <span class="settings-arrow">›</span>
           </div>
         </div>
 
-        <!-- Active Admin Dashboard (Only when authenticated) -->
-        <div class="modern-card admin-dashboard-card hidden" id="adminDashboardCard">
-          <div class="admin-top-bar">
-            <div>
-              <h3>🛡️ Admin Dashboard</h3>
-              <p>Logged in: <strong>Chief Sevadar</strong></p>
-            </div>
-            <button class="modern-btn btn-secondary btn-sm" id="adminLogoutBtn">Logout</button>
-          </div>
+      </section>
 
-          <!-- Stats Grid -->
+      <!-- ================= VIEW 6: SEPARATE DEDICATED ADMIN PORTAL ================= -->
+      <section id="adminSection" class="view-panel">
+        
+        <!-- Admin Top Navigation Bar -->
+        <div class="admin-top-nav-card">
+          <div class="admin-nav-left">
+            <button class="back-to-app-btn" id="exitAdminBtn" title="Back to Devotee App">← Exit Admin</button>
+            <div class="admin-title-badge">
+              <h3>🛡️ Admin Command Center</h3>
+              <span class="badge-role">CHIEF SEVADAR (LIVE)</span>
+            </div>
+          </div>
+          <button class="modern-btn btn-secondary btn-sm" id="adminFullLogoutBtn">Logout</button>
+        </div>
+
+        <!-- Admin Sub-Navigation Tabs -->
+        <div class="admin-tab-pills">
+          <button class="admin-tab-btn active" data-admintab="adminOverviewTab">📊 Overview</button>
+          <button class="admin-tab-btn" data-admintab="adminSawamaniTab">🍯 Sawamani (<span id="adminCountSawamani">0</span>)</button>
+          <button class="admin-tab-btn" data-admintab="adminOrdersTab">📦 Orders (<span id="adminCountOrders">0</span>)</button>
+          <button class="admin-tab-btn" data-admintab="adminProductsTab">🛍️ Inventory</button>
+          <button class="admin-tab-btn" data-admintab="adminDarbarTab">📝 Darbar Passes</button>
+        </div>
+
+        <!-- Admin Tab 1: Overview & Metrics -->
+        <div id="adminOverviewTab" class="admin-tab-content active">
           <div class="admin-stats-3col">
-            <div class="admin-metric-card">
-              <span class="metric-label">Total Sawamani</span>
-              <h4 id="adminMetricSawamani">₹0</h4>
+            <div class="admin-metric-card metric-sawamani">
+              <span class="metric-label">Sawamani Seva Total</span>
+              <h4 id="adminOverviewSawamaniAmt">₹0</h4>
+              <span class="metric-sub" id="adminOverviewSawamaniCount">0 Bookings</span>
             </div>
-            <div class="admin-metric-card">
-              <span class="metric-label">Store Orders</span>
-              <h4 id="adminMetricOrders">0</h4>
+            <div class="admin-metric-card metric-store">
+              <span class="metric-label">Store Revenue</span>
+              <h4 id="adminOverviewStoreAmt">₹0</h4>
+              <span class="metric-sub" id="adminOverviewStoreCount">0 Orders</span>
             </div>
-            <div class="admin-metric-card">
+            <div class="admin-metric-card metric-devotees">
               <span class="metric-label">Total Devotees</span>
-              <h4 id="adminMetricDevotees">0</h4>
+              <h4 id="adminOverviewDevoteesCount">0</h4>
+              <span class="metric-sub">Across All States</span>
             </div>
           </div>
 
-          <!-- Admin Bookings Table -->
-          <div class="admin-table-container">
-            <table class="modern-table">
-              <thead>
-                <tr>
-                  <th>Devotee Name</th>
-                  <th>Mobile</th>
-                  <th>Reason / Sankalp</th>
-                  <th>Address</th>
-                  <th>Amount</th>
-                </tr>
-              </thead>
-              <tbody id="adminSawamaniTbody">
-                <!-- Dynamic Rows -->
-              </tbody>
-            </table>
+          <!-- Quick Action Card -->
+          <div class="modern-card">
+            <h4 style="font-size:12px; margin-bottom:8px;">⚡ Quick Management Actions</h4>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+              <button class="modern-btn btn-primary" onclick="switchAdminTab('adminSawamaniTab')">Manage Sawamani ➔</button>
+              <button class="modern-btn btn-secondary" style="color:var(--text-main); background:#f1f5f9;" onclick="switchAdminTab('adminOrdersTab')">Dispatch Orders ➔</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Tab 2: Sawamani Seva Management -->
+        <div id="adminSawamaniTab" class="admin-tab-content">
+          <div class="modern-card">
+            <div class="card-title-row">
+              <h4>🍯 Sawamani Seva Bookings (₹11,000)</h4>
+              <span class="badge-count" id="adminSawamaniBadgeCount">0</span>
+            </div>
+            <div class="admin-table-container">
+              <table class="modern-table">
+                <thead>
+                  <tr>
+                    <th>Ref ID</th>
+                    <th>Devotee Name</th>
+                    <th>Mobile</th>
+                    <th>Sankalp Reason</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="adminSawamaniFullTbody">
+                  <!-- Dynamic Rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Tab 3: Store Orders Management -->
+        <div id="adminOrdersTab" class="admin-tab-content">
+          <div class="modern-card">
+            <div class="card-title-row">
+              <h4>📦 Divya Store Dispatches & Courier Tracking</h4>
+              <span class="badge-count" id="adminOrdersBadgeCount">0</span>
+            </div>
+            <div class="admin-table-container">
+              <table class="modern-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Items</th>
+                    <th>Amount</th>
+                    <th>Delivery State & Address</th>
+                    <th>Tracking #</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="adminOrdersFullTbody">
+                  <!-- Dynamic Store Rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Tab 4: Products & Inventory -->
+        <div id="adminProductsTab" class="admin-tab-content">
+          <div class="modern-card">
+            <div class="card-title-row">
+              <h4>🛍️ Store Products & Pricing</h4>
+              <button class="modern-btn btn-primary btn-sm" id="adminAddNewProdBtn">+ Add Product</button>
+            </div>
+            <div class="admin-inventory-list" id="adminInventoryList">
+              <!-- Dynamic Product Editor Rows -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Tab 5: Darbar Registrations -->
+        <div id="adminDarbarTab" class="admin-tab-content">
+          <div class="modern-card">
+            <div class="card-title-row">
+              <h4>📝 Darbar Devotee Registrations</h4>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSehGbn2-Pte9h3gr8ULqxqPG0fyG7ykKyE9j0ZubVrFW0MaOg/viewform" target="_blank" class="modern-btn btn-secondary btn-sm" style="color:var(--text-main); background:#f1f5f9;">Open Google Form ↗</a>
+            </div>
+            <div class="admin-table-container">
+              <table class="modern-table">
+                <thead>
+                  <tr>
+                    <th>Reg ID</th>
+                    <th>Devotee Name</th>
+                    <th>City / State</th>
+                    <th>Date</th>
+                    <th>Pass Status</th>
+                  </tr>
+                </thead>
+                <tbody id="adminDarbarTbody">
+                  <!-- Dynamic Darbar Rows -->
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
@@ -440,7 +570,7 @@
     </div>
 
     <!-- ================= 4. BOTTOM NAVIGATION DOCK ================= -->
-    <nav class="bottom-dock">
+    <nav class="bottom-dock" id="appBottomDock">
       <button class="dock-item active" data-nav="home">
         <span class="dock-icon">🕉️</span>
         <span class="dock-text" data-key="navHome">Home</span>
@@ -467,7 +597,7 @@
       </button>
     </nav>
 
-    <!-- ================= 5. MODALS & SHEETS ================= -->
+    <!-- ================= 5. MODALS, SHEETS & RECEIPT GENERATOR ================= -->
 
     <!-- Store Cart & Checkout Drawer (Sliding Bottom Sheet) -->
     <div class="bottom-sheet-backdrop hidden" id="cartDrawerBackdrop">
@@ -493,6 +623,22 @@
               <option value="south_east">South & East (Karnataka, TN, Bengal, Odisha) (₹110 Shipping)</option>
               <option value="remote">North-East & Remote Regions (₹140 Shipping)</option>
             </select>
+          </div>
+
+          <!-- Devotee Name & Mobile -->
+          <div class="form-group">
+            <label for="cartDevoteeName">Devotee Full Name *</label>
+            <input type="text" id="cartDevoteeName" placeholder="e.g. Rahul Verma">
+          </div>
+
+          <div class="form-group">
+            <label for="cartDevoteePhone">Mobile / WhatsApp Number *</label>
+            <input type="tel" id="cartDevoteePhone" placeholder="e.g. +91 98765 43210">
+          </div>
+
+          <div class="form-group">
+            <label for="cartDevoteeEmail">Email Address (For Instant Receipt PDF)</label>
+            <input type="email" id="cartDevoteeEmail" placeholder="e.g. rahul@example.com">
           </div>
 
           <!-- Delivery Address Input -->
@@ -528,7 +674,7 @@
       </div>
     </div>
 
-    <!-- Generic Payment Modal (Sawamani & Store) -->
+    <!-- Real Direct UPI Intent & Payment Gateway Modal -->
     <div class="modal-overlay hidden" id="paymentModalOverlay">
       <div class="modern-modal-card">
         <div class="modal-top">
@@ -541,99 +687,150 @@
           <h2 id="paymentAmountDisplay">₹11,000</h2>
         </div>
 
-        <!-- Payment Options -->
-        <div class="payment-methods-grid">
-          <label class="pay-method-card selected">
-            <input type="radio" name="payMethod" value="upi" checked>
-            <div class="method-info">
-              <span class="method-icon">📱</span>
-              <div>
-                <strong>Instant UPI (GPay / PhonePe / Paytm)</strong>
-                <p>Direct Temple Trust Account</p>
-              </div>
-            </div>
-          </label>
-
-          <label class="pay-method-card">
-            <input type="radio" name="payMethod" value="qr">
-            <div class="method-info">
-              <span class="method-icon">📷</span>
-              <div>
-                <strong>Scan Temple QR Code</strong>
-                <p>Scan using any UPI app</p>
-              </div>
-            </div>
-          </label>
-
-          <label class="pay-method-card">
-            <input type="radio" name="payMethod" value="card">
-            <div class="method-info">
-              <span class="method-icon">🏛️</span>
-              <div>
-                <strong>Net Banking / Debit Card</strong>
-                <p>All Indian banks supported</p>
-              </div>
-            </div>
-          </label>
+        <!-- 1. FREE DIRECT UPI APP INTENTS (0% COMMISION) -->
+        <div class="upi-intent-container">
+          <div class="upi-intent-title">⚡ Instant Direct UPI (0% Fee / No Extra Charge)</div>
+          <div class="upi-apps-row">
+            <a href="#" id="gpayIntentLink" class="upi-app-btn gpay-btn" title="Open Google Pay">
+              <span class="upi-btn-icon">🟢</span>
+              <span>GPay</span>
+            </a>
+            <a href="#" id="phonepeIntentLink" class="upi-app-btn phonepe-btn" title="Open PhonePe">
+              <span class="upi-btn-icon">🟣</span>
+              <span>PhonePe</span>
+            </a>
+            <a href="#" id="paytmIntentLink" class="upi-app-btn paytm-btn" title="Open Paytm">
+              <span class="upi-btn-icon">🔵</span>
+              <span>Paytm</span>
+            </a>
+            <a href="#" id="bhimIntentLink" class="upi-app-btn bhim-btn" title="Open Any UPI App">
+              <span class="upi-btn-icon">🟠</span>
+              <span>BHIM / All</span>
+            </a>
+          </div>
         </div>
 
         <!-- QR Display Preview -->
-        <div class="qr-box-preview hidden" id="qrBoxPreview">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=balajikripa@upi&pn=Shree%20Balaji%20Ki%20Kripa%20Trust&am=11000&cu=INR" alt="UPI QR" id="qrImgSrc">
-          <p class="qr-hint">Scan with Google Pay / PhonePe / Paytm</p>
+        <div class="qr-box-preview" id="qrBoxPreview">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=upi://pay?pa=balajikripa@upi&pn=Shree%20Balaji%20Ki%20Kripa%20Trust&am=11000&cu=INR" alt="UPI QR" id="qrImgSrc">
+          <p class="qr-hint">Scan with GPay, PhonePe, Paytm or BHIM (UPI ID: <strong>balajikripa@upi</strong>)</p>
+        </div>
+
+        <!-- Devotee UTR / Transaction Reference (Optional verification) -->
+        <div class="form-group" style="margin-top:10px;">
+          <label for="upiUtrInput" style="font-size:10px; font-weight:700;">12-Digit UPI Ref / UTR / Transaction ID (Optional):</label>
+          <input type="text" id="upiUtrInput" placeholder="e.g. 423871920812">
         </div>
 
         <button class="modern-btn btn-primary btn-block btn-lg" id="confirmPaymentBtn">
           <span class="btn-icon">✓</span>
-          <span data-key="btnConfirmPayment">Complete Payment (<span id="confirmPayBtnAmt">₹11,000</span>)</span>
+          <span id="confirmPayBtnLabel">I Have Paid • Confirm Booking (<span id="confirmPayBtnAmt">₹11,000</span>)</span>
         </button>
       </div>
     </div>
 
-    <!-- Success Confirmation Modal -->
+    <!-- Success Confirmation & Digital Receipt Modal -->
     <div class="modal-overlay hidden" id="successModalOverlay">
-      <div class="modern-modal-card text-center">
+      <div class="modern-modal-card text-center" style="max-width: 440px;">
         <div class="success-icon-ring">✓</div>
         <h2 id="successHeading" data-key="successDefaultHeading">Seva Booking Confirmed!</h2>
         <p id="successMessage" data-key="successDefaultMsg">Your offering has been registered with Shree Balaji Maharaj.</p>
 
-        <div class="success-receipt-card">
-          <div class="receipt-row">
-            <span data-key="refIdLabel">Reference ID:</span>
-            <strong id="successRefVal">#BK-8821</strong>
+        <!-- Printable Official Digital Receipt Card -->
+        <div class="printable-receipt-card" id="printableReceipt">
+          <div class="receipt-brand-header">
+            <span class="receipt-dham-title">🚩 श्री बालाजी कृपा दिव्य धाम 🚩</span>
+            <p class="receipt-dham-sub">Shree Balaji Ki Kripa Dham, Hisar, Haryana</p>
+            <div class="receipt-divider"></div>
           </div>
-          <div class="receipt-row">
-            <span data-key="devoteeLabel">Devotee:</span>
+
+          <div class="receipt-meta-grid">
+            <div class="receipt-col">
+              <span class="rec-label">Receipt Ref:</span>
+              <strong id="successRefVal">#BK-8821</strong>
+            </div>
+            <div class="receipt-col">
+              <span class="rec-label">Date & Time:</span>
+              <strong id="successTimeVal">Today</strong>
+            </div>
+          </div>
+
+          <div class="receipt-row-item">
+            <span class="rec-label">Devotee Name:</span>
             <strong id="successDevoteeVal">Ramesh Sharma</strong>
           </div>
-          <div class="receipt-row">
-            <span data-key="statusLabel">Status:</span>
-            <strong class="text-success">CONFIRMED ✅</strong>
+
+          <div class="receipt-row-item" id="successPhoneRow">
+            <span class="rec-label">Mobile Number:</span>
+            <strong id="successPhoneVal">+91 98765 43210</strong>
+          </div>
+
+          <div class="receipt-row-item" id="successEmailRow">
+            <span class="rec-label">Email Address:</span>
+            <strong id="successEmailVal">devotee@gmail.com</strong>
+          </div>
+
+          <div class="receipt-row-item">
+            <span class="rec-label">Prasad / Delivery Address:</span>
+            <span id="successAddressVal" style="font-size:10px; color:var(--text-main);">Hisar, Haryana</span>
+          </div>
+
+          <div class="receipt-divider"></div>
+
+          <div class="receipt-total-row">
+            <span>Total Paid (PAID ✅):</span>
+            <strong id="successAmountVal" style="font-size:14px; color:var(--primary);">₹11,000</strong>
+          </div>
+
+          <div class="receipt-footer-seal">
+            <span>Official Digital Receipt • Emailed & Dispatched with Blessings</span>
           </div>
         </div>
 
-        <button class="modern-btn btn-primary btn-block" id="successDoneBtn" data-key="btnViewMySevas">
-          View My Bookings / Sevas 📋
-        </button>
+        <div class="receipt-actions-row">
+          <button class="modern-btn btn-secondary btn-sm" id="printReceiptBtn" style="color:var(--text-main); background:#f1f5f9;">
+            <span>🖨️ Print Receipt</span>
+          </button>
+          <button class="modern-btn btn-primary btn-sm" id="successDoneBtn" data-key="btnViewMySevas">
+            <span>View My Sevas 📋</span>
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- Admin Passcode Modal -->
+    <!-- Dedicated Separate Admin Login Modal -->
     <div class="modal-overlay hidden" id="adminPasscodeModal">
       <div class="modern-modal-card">
         <div class="modal-top">
-          <h3>🔐 Admin Authentication</h3>
+          <h3>🛡️ Authorized Sevadar Login</h3>
           <button class="sheet-close-btn" id="closeAdminPasscodeBtn">✕</button>
         </div>
-        <p class="modal-subtext">Enter authorized sevadar passcode to access temple records.</p>
+        <p class="modal-subtext">Restricted to temple trust sevadars & management staff.</p>
         
         <form id="adminPasscodeForm" class="clean-form">
+          <div class="form-group">
+            <label for="adminIdInput">Sevadar ID</label>
+            <input type="text" id="adminIdInput" required value="ADMIN_CHIEF">
+          </div>
           <div class="form-group">
             <label for="adminPasscodeInput">Passcode (Default: BALAJI777)</label>
             <input type="password" id="adminPasscodeInput" required placeholder="Enter passcode">
           </div>
           <button type="submit" class="modern-btn btn-primary btn-block">Unlock Dashboard 🔓</button>
         </form>
+      </div>
+    </div>
+
+    <!-- Quick Live Tracking Result Modal -->
+    <div class="modal-overlay hidden" id="trackingResultModal">
+      <div class="modern-modal-card">
+        <div class="modal-top">
+          <h3>🚚 Live Seva & Order Tracker</h3>
+          <button class="sheet-close-btn" id="closeTrackingModalBtn">✕</button>
+        </div>
+        <div id="trackingModalBody" style="padding:10px 0;">
+          <!-- Dynamic Step Tracker Content -->
+        </div>
       </div>
     </div>
 
