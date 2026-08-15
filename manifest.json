@@ -1,0 +1,10 @@
+{
+  "name": "श्री बालाजी कृपा | Balaji Ki Kripa",
+  "short_name": "Balaji Kripa",
+  "description": "15-Minute Instant Devotional & Temple Prasad Delivery Store",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fdfbf7",
+  "theme_color": "#ea580c",
+  "orientation": "portrait-primary"
+}
