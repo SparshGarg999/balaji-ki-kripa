@@ -82,6 +82,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
 }
 
 .brand-logo-modern {
@@ -141,7 +142,6 @@ body {
   gap: 8px;
 }
 
-/* Modern Language Switch Pill */
 .lang-toggle-btn {
   background: var(--primary-light);
   border: 1px solid var(--border-active);
@@ -168,7 +168,7 @@ body {
   color: var(--primary-dark);
 }
 
-.profile-avatar-btn {
+.admin-door-btn {
   background: #ffffff;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
@@ -177,9 +177,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
   box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.admin-door-btn:hover {
+  border-color: var(--primary);
+  transform: scale(1.05);
 }
 
 /* ================= 2. MAIN APP CONTENT ================= */
@@ -261,7 +267,7 @@ body {
   gap: 8px;
 }
 
-/* ================= 4. QUICK SERVICES HUB ================= */
+/* ================= 4. QUICK SERVICES & TRACKER HUB ================= */
 .quick-services-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -327,6 +333,49 @@ body {
   font-size: 14px;
   color: var(--primary);
   font-weight: bold;
+}
+
+/* Quick Tracker Search Card */
+.track-search-card {
+  background: linear-gradient(135deg, #ffffff, #fff7ed);
+  border-color: #fed7aa;
+}
+
+.track-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.track-icon {
+  font-size: 16px;
+}
+
+.track-header h4 {
+  font-size: 12px;
+  font-weight: 800;
+  color: #7c2d12;
+}
+
+.track-header p {
+  font-size: 10px;
+  color: #9a3412;
+}
+
+.track-input-group {
+  display: flex;
+  gap: 6px;
+}
+
+.track-input-group input {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid #fdba74;
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  font-size: 11px;
+  outline: none;
 }
 
 /* ================= 5. MODERN CARDS & GUIDELINES ================= */
@@ -638,7 +687,7 @@ body {
   box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1);
 }
 
-/* ================= 8. STORE (BLINKIT / AMAZON 2-COLUMN TILES) ================= */
+/* ================= 8. STORE (2-COLUMN TILES) ================= */
 .store-banner {
   background: linear-gradient(135deg, #eff6ff, #dbeafe);
   border-color: #bfdbfe;
@@ -678,7 +727,6 @@ body {
   color: #15803d;
 }
 
-/* 2-Column Product Grid */
 .store-grid-2col {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -751,7 +799,6 @@ body {
   overflow: hidden;
 }
 
-/* Batch selector chip inside tile */
 .tile-batch-select {
   margin-bottom: 8px;
 }
@@ -830,7 +877,7 @@ body {
   font-weight: 800;
 }
 
-/* ================= 9. MY SEVAS & SEGMENTED TABS ================= */
+/* ================= 9. MY SEVAS, RECORDS & VISUAL STEP TRACKER ================= */
 .segmented-control {
   display: flex;
   background: #f1f5f9;
@@ -869,7 +916,7 @@ body {
 .records-feed {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .record-tile {
@@ -883,11 +930,12 @@ body {
 .record-head {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 4px;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .record-id {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 800;
   color: var(--primary-dark);
 }
@@ -905,9 +953,99 @@ body {
   font-size: 11px;
   color: var(--text-main);
   line-height: 1.4;
+  margin-bottom: 10px;
 }
 
-/* ================= 10. PROFILE & ADMIN DASHBOARD ================= */
+/* Visual Step Tracker */
+.step-tracker {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin: 10px 0;
+  padding: 0 4px;
+}
+
+.step-tracker::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  right: 15px;
+  height: 2px;
+  background: #e2e8f0;
+  z-index: 1;
+}
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  width: 25%;
+}
+
+.step-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 800;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.step-item.step-done .step-dot {
+  background: var(--green);
+  border-color: var(--green);
+  color: #ffffff;
+}
+
+.step-item.step-active .step-dot {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.step-text {
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.1;
+}
+
+.step-item.step-done .step-text,
+.step-item.step-active .step-text {
+  color: var(--text-main);
+  font-weight: 800;
+}
+
+.record-footer-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px dashed var(--border-subtle);
+  padding-top: 8px;
+  margin-top: 8px;
+}
+
+.tracking-num-tag {
+  font-size: 10px;
+  font-weight: 700;
+  color: #1e3a8a;
+  background: #eff6ff;
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+}
+
+/* ================= 10. PROFILE & SEVADAR LOGIN ================= */
 .profile-user-card {
   text-align: center;
   padding: 16px;
@@ -993,36 +1131,79 @@ body {
   font-size: 14px;
 }
 
-.admin-row {
-  background: #fff1f2;
-}
-
-.text-danger {
-  color: var(--danger) !important;
-}
-
-/* Admin Dashboard Container */
-.admin-dashboard-card {
-  border: 1.5px solid var(--primary);
-  margin-top: 14px;
-}
-
-.admin-top-bar {
+/* ================= 11. DEDICATED SEPARATE ADMIN PORTAL ================= */
+.admin-top-nav-card {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 12px 14px;
+  margin-bottom: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.2);
+}
+
+.admin-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-to-app-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: var(--radius-xs);
+  font-size: 9px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.admin-title-badge h3 {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.badge-role {
+  font-size: 8px;
+  color: #38bdf8;
+  font-weight: 800;
+}
+
+.admin-tab-pills {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
   margin-bottom: 12px;
 }
 
-.admin-top-bar h3 {
-  font-size: 13px;
-  font-weight: 800;
-  color: var(--text-main);
+.admin-tab-btn {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 6px 12px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  white-space: nowrap;
 }
 
-.admin-top-bar p {
-  font-size: 10px;
-  color: var(--text-muted);
+.admin-tab-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+.admin-tab-content {
+  display: none;
+}
+
+.admin-tab-content.active {
+  display: block;
 }
 
 .admin-stats-3col {
@@ -1033,23 +1214,33 @@ body {
 }
 
 .admin-metric-card {
-  background: #f8fafc;
+  background: #ffffff;
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  padding: 8px 6px;
+  border-radius: var(--radius-md);
+  padding: 10px 8px;
   text-align: center;
-}
-
-.metric-label {
-  font-size: 9px;
-  color: var(--text-muted);
-  font-weight: 600;
+  box-shadow: var(--shadow-sm);
 }
 
 .admin-metric-card h4 {
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--primary);
+  margin: 2px 0;
+}
+
+.metric-sub {
+  font-size: 8px;
+  color: var(--text-muted);
+}
+
+.badge-count {
+  background: #fee2e2;
+  color: #dc2626;
+  font-size: 10px;
   font-weight: 800;
-  color: var(--text-main);
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
 }
 
 .admin-table-container {
@@ -1075,7 +1266,139 @@ body {
   border-top: 1px solid var(--border-subtle);
 }
 
-/* ================= 11. FLOATING CART PILL (BLINKIT STYLE) ================= */
+/* ================= 12. DIRECT UPI APP INTENTS & FREE COMMISION ================= */
+.upi-intent-container {
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: var(--radius-md);
+  padding: 10px;
+  margin-bottom: 12px;
+}
+
+.upi-intent-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: #166534;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.upi-apps-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.upi-app-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 1px solid #bbf7d0;
+  border-radius: var(--radius-sm);
+  padding: 6px 2px;
+  text-decoration: none;
+  color: var(--text-main);
+  font-size: 9px;
+  font-weight: 800;
+  transition: var(--transition);
+}
+
+.upi-app-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.upi-btn-icon {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.gpay-btn { border-color: #34a853; color: #1e8e3e; }
+.phonepe-btn { border-color: #5f259f; color: #5f259f; }
+.paytm-btn { border-color: #00b9f1; color: #002970; }
+.bhim-btn { border-color: #f58220; color: #d96808; }
+
+/* ================= 13. PRINTABLE DIGITAL RECEIPT CARD ================= */
+.printable-receipt-card {
+  background: #ffffff;
+  border: 1.5px solid #fdba74;
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin: 12px 0;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.08);
+}
+
+.receipt-brand-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.receipt-dham-title {
+  font-family: 'Outfit', 'Noto Sans Devanagari', sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--primary);
+  display: block;
+}
+
+.receipt-dham-sub {
+  font-size: 9px;
+  color: var(--text-muted);
+}
+
+.receipt-divider {
+  height: 1px;
+  border-top: 1px dashed #fdba74;
+  margin: 8px 0;
+}
+
+.receipt-meta-grid {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  margin-bottom: 6px;
+}
+
+.rec-label {
+  color: var(--text-muted);
+  display: block;
+  font-size: 9px;
+}
+
+.receipt-row-item {
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.receipt-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.receipt-footer-seal {
+  text-align: center;
+  font-size: 8px;
+  color: #15803d;
+  font-weight: 800;
+  background: #dcfce7;
+  padding: 3px;
+  border-radius: var(--radius-xs);
+  margin-top: 8px;
+}
+
+.receipt-actions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* ================= 14. FLOATING CART PILL (BLINKIT STYLE) ================= */
 .floating-cart-pill {
   position: fixed;
   bottom: 66px;
@@ -1117,7 +1440,7 @@ body {
   cursor: pointer;
 }
 
-/* ================= 12. BOTTOM NAVIGATION DOCK ================= */
+/* ================= 15. BOTTOM NAVIGATION DOCK ================= */
 .bottom-dock {
   position: fixed;
   bottom: 0;
@@ -1169,7 +1492,7 @@ body {
   transform: scale(1.15);
 }
 
-/* ================= 13. MODALS & SHEETS ================= */
+/* ================= 16. MODALS & SHEETS ================= */
 .modal-overlay,
 .bottom-sheet-backdrop {
   position: fixed;
@@ -1317,7 +1640,6 @@ body {
   border-top: 1px solid var(--border-subtle);
 }
 
-/* Payment Modal Specific */
 .payment-amount-box {
   background: #fff7ed;
   border: 1px solid #fed7aa;
@@ -1336,39 +1658,6 @@ body {
   font-size: 20px;
   font-weight: 900;
   color: var(--primary);
-}
-
-.payment-methods-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.pay-method-card {
-  background: #ffffff;
-  border: 1.5px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  padding: 8px 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-}
-
-.pay-method-card.selected {
-  border-color: var(--primary);
-  background: #fff7ed;
-}
-
-.method-info strong {
-  font-size: 11px;
-  display: block;
-}
-
-.method-info p {
-  font-size: 9px;
-  color: var(--text-muted);
 }
 
 .qr-box-preview {
@@ -1392,7 +1681,6 @@ body {
   margin-top: 4px;
 }
 
-/* Success Modal */
 .text-center { text-align: center; }
 
 .success-icon-ring {
@@ -1409,25 +1697,6 @@ body {
   margin: 0 auto 10px;
 }
 
-.success-receipt-card {
-  background: #f8fafc;
-  border-radius: var(--radius-sm);
-  padding: 10px;
-  margin: 12px 0 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.receipt-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-}
-
-.text-success { color: var(--green); }
-
-/* Buttons */
 .modern-btn {
   padding: 8px 14px;
   border-radius: var(--radius-sm);
@@ -1464,14 +1733,10 @@ body {
 }
 
 .btn-block { width: 100%; }
-
 .btn-sm { padding: 4px 8px; font-size: 10px; }
-
 .btn-lg { padding: 10px 16px; font-size: 12px; }
-
 .hidden { display: none !important; }
 
-/* Toast */
 .toast-notification {
   position: fixed;
   top: 14px;
