@@ -464,6 +464,59 @@ function setupEventListeners() {
     });
   });
 
+  // 🌟 Live Royal Sankalp Patra Preview Sync
+  const nameInput = document.getElementById('sawamaniDevoteeName');
+  const phoneInput = document.getElementById('sawamaniPhone');
+  const reasonInput = document.getElementById('sawamaniReason');
+  const addressInput = document.getElementById('sawamaniAddress');
+
+  const liveName = document.getElementById('livePreviewName');
+  const livePhone = document.getElementById('livePreviewPhone');
+  const liveReason = document.getElementById('livePreviewReason');
+  const liveAddress = document.getElementById('livePreviewAddress');
+
+  if (nameInput && liveName) {
+    nameInput.addEventListener('input', (e) => {
+      const val = e.target.value.trim();
+      liveName.textContent = val ? (state.lang === 'hi' ? `श्री / श्रीमती ${val}` : `Shree / Smt. ${val}`) : (state.lang === 'hi' ? 'श्री / श्रीमती भक्त नाम' : 'Shree / Smt. Devotee Name');
+    });
+  }
+
+  if (phoneInput && livePhone) {
+    phoneInput.addEventListener('input', (e) => {
+      const val = e.target.value.trim();
+      livePhone.textContent = val ? `+91 ${val}` : '+91 XXXXX XXXXX';
+    });
+  }
+
+  if (reasonInput && liveReason) {
+    reasonInput.addEventListener('input', (e) => {
+      const val = e.target.value.trim();
+      liveReason.textContent = val ? val : (state.lang === 'hi' ? 'स्वास्थ्य लाभ, संकट निवारण एवं परिवार में सुख-शांति हेतु...' : 'Health, obstacle removal & family peace...');
+    });
+  }
+
+  if (addressInput && liveAddress) {
+    addressInput.addEventListener('input', (e) => {
+      const val = e.target.value.trim();
+      liveAddress.textContent = val ? val : (state.lang === 'hi' ? 'धाम द्वारा आपके निवास स्थान पर स्पीड पोस्ट से प्रेषित' : 'Dispatched directly to your address via Speed Post');
+    });
+  }
+
+  // ⚡ 1-Tap Preset Reason Chips Click Handler
+  document.querySelectorAll('#sawamaniReasonChips .reason-chip-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#sawamaniReasonChips .reason-chip-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      const reasonText = btn.getAttribute('data-reason');
+      if (reasonInput) {
+        reasonInput.value = reasonText;
+        reasonInput.dispatchEvent(new Event('input'));
+        reasonInput.focus();
+      }
+    });
+  });
+
   // Sawamani 4-Field Form Submit
   const sawamaniSimpleForm = document.getElementById('sawamaniSimpleForm');
   if (sawamaniSimpleForm) {
