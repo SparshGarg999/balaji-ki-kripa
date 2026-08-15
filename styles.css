@@ -541,19 +541,281 @@ body {
   white-space: nowrap;
 }
 
-/* ================= 7. SAWAMANI SEVA VIEW ================= */
+/* ================= 7. SAWAMANI SEVA VIEW (2026 LUXURY REDESIGN) ================= */
 .page-top-banner {
-  background: linear-gradient(135deg, #fff7ed, #fed7aa);
-  border: 1px solid #fdba74;
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 50%, #fed7aa 100%);
+  border: 1.5px solid #fdba74;
   border-radius: var(--radius-lg);
-  padding: 14px 12px;
+  padding: 16px 14px;
   text-align: center;
   margin-bottom: 14px;
+  box-shadow: 0 4px 16px rgba(255, 87, 34, 0.08);
 }
 
-.pill-tag {
-  background: #ea580c;
+.luxury-banner {
+  position: relative;
+  overflow: hidden;
+}
+
+.banner-badge-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.luxury-pill {
+  background: linear-gradient(135deg, #ea580c, #c2410c);
   color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3);
+}
+
+.badge-seal-gold {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.page-top-banner h2 {
+  font-family: 'Outfit', 'Noto Sans Devanagari', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #7c2d12;
+  letter-spacing: -0.3px;
+}
+
+.page-top-banner p {
+  font-size: 11px;
+  color: #9a3412;
+  margin-top: 2px;
+}
+
+/* 🌟 LIVE ROYAL SANKALP PATRA (GOLD FOIL PARCHMENT CARD) */
+.royal-sankalp-patra {
+  background: linear-gradient(145deg, #fffbeb 0%, #fef3c7 40%, #fff7ed 100%);
+  border: 2px solid #f59e0b;
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.18), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.royal-sankalp-patra::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, transparent 50%, rgba(245,158,11,0.15) 100%);
+}
+
+.patra-watermark {
+  position: absolute;
+  right: -10px;
+  bottom: -15px;
+  font-size: 110px;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.patra-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px dashed #f59e0b;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.patra-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.patra-om {
+  font-size: 20px;
+}
+
+.patra-title {
+  font-family: 'Outfit', 'Noto Sans Devanagari', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  color: #78350f;
+  letter-spacing: -0.2px;
+}
+
+.patra-subtitle {
+  font-size: 9px;
+  font-weight: 700;
+  color: #92400e;
+  display: block;
+}
+
+.patra-seal {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(180, 83, 9, 0.35);
+}
+
+.patra-seal span {
+  font-size: 8px;
+  display: block;
+}
+
+.patra-seal strong {
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+
+.patra-body-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 12px;
+}
+
+.patra-item.full-span {
+  grid-column: span 2;
+}
+
+.patra-label {
+  font-size: 9px;
+  font-weight: 800;
+  color: #92400e;
+  display: block;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.patra-val {
+  font-size: 12px;
+  font-weight: 800;
+  color: #1e293b;
+  display: block;
+  word-break: break-word;
+}
+
+.patra-val.text-gold {
+  color: #b45309;
+  font-size: 13px;
+}
+
+.patra-reason-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: #78350f;
+  line-height: 1.35;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 6px 8px;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.patra-address-text {
+  font-size: 10px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.patra-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(245, 158, 11, 0.3);
+  padding-top: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.patra-status {
+  font-size: 9px;
+  font-weight: 800;
+  color: #15803d;
+  background: #dcfce7;
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+}
+
+.patra-amount {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+  color: #b45309;
+}
+
+/* Significance Accordion */
+.significance-header {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.significance-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.info-card-amber {
+  background: #ffffff;
+  border: 1.5px solid #fed7aa;
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+}
+
+.info-card-amber h3 {
+  font-size: 12px;
+  font-weight: 800;
+  color: #9a3412;
+  margin-bottom: 2px;
+}
+
+.info-card-amber p {
+  font-size: 11px;
+  color: #7c2d12;
+  line-height: 1.4;
+}
+
+/* 🌟 2026 ULTRA-MODERN FORM WRAPPER & FIELD CARDS */
+.modern-form-wrapper {
+  background: #ffffff;
+  border: 1.5px solid #fed7aa;
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 10px 30px rgba(255, 87, 34, 0.05);
+}
+
+.form-section-header {
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.section-number-pill {
+  background: #fff7ed;
+  color: #ea580c;
+  border: 1px solid #fed7aa;
   font-size: 9px;
   font-weight: 800;
   padding: 2px 8px;
@@ -562,87 +824,9 @@ body {
   margin-bottom: 4px;
 }
 
-.page-top-banner h2 {
-  font-family: 'Outfit', 'Noto Sans Devanagari', sans-serif;
-  font-size: 17px;
-  font-weight: 800;
-  color: #7c2d12;
-}
-
-.page-top-banner p {
-  font-size: 11px;
-  color: #9a3412;
-}
-
-.info-card-amber {
-  background: #fffbeb;
-  border-color: #fde68a;
-}
-
-.info-card-amber h3 {
-  font-size: 12px;
-  font-weight: 800;
-  color: #92400e;
-  margin-bottom: 4px;
-}
-
-.info-card-amber p {
-  font-size: 11px;
-  color: #78350f;
-  line-height: 1.45;
-}
-
-.price-highlight-card {
-  background: #ffffff;
-  border: 1.5px solid var(--primary);
-  border-radius: var(--radius-lg);
-  padding: 14px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
-  box-shadow: var(--shadow-sm);
-}
-
-.price-label {
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--text-muted);
-  display: block;
-}
-
-.price-number {
-  font-family: 'Outfit', sans-serif;
-  font-size: 24px;
-  font-weight: 900;
-  color: var(--primary);
-  line-height: 1.1;
-}
-
-.price-subtext {
-  font-size: 9px;
-  color: var(--text-muted);
-}
-
-.pure-seal {
-  background: var(--green);
-  color: #ffffff;
-  padding: 4px 8px;
-  border-radius: var(--radius-sm);
-  text-align: center;
-}
-
-.pure-seal span {
-  font-size: 8px;
-  display: block;
-}
-
-.pure-seal strong {
-  font-size: 10px;
-}
-
 .form-title {
-  font-size: 13px;
+  font-family: 'Outfit', 'Noto Sans Devanagari', sans-serif;
+  font-size: 14px;
   font-weight: 800;
   color: var(--text-main);
 }
@@ -650,41 +834,286 @@ body {
 .form-sub {
   font-size: 10px;
   color: var(--text-muted);
-  margin-bottom: 12px;
 }
 
-/* Clean Form Styling */
-.clean-form .form-group {
-  margin-bottom: 12px;
+.modern-luxury-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.clean-form label {
-  display: block;
-  font-size: 11px;
-  font-weight: 700;
-  color: #334155;
-  margin-bottom: 4px;
-}
-
-.clean-form input,
-.clean-form textarea,
-.clean-form select {
-  width: 100%;
+/* Field Cards with Icon Badges */
+.form-field-card {
   background: #f8fafc;
-  border: 1px solid var(--border-subtle);
+  border: 1.5px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 12px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-field-card:focus-within {
+  background: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(255, 87, 34, 0.12), 0 8px 20px rgba(255, 87, 34, 0.06);
+  transform: translateY(-1px);
+}
+
+.highlight-field-card {
+  background: linear-gradient(135deg, #fffbeb, #fff7ed);
+  border-color: #fde68a;
+}
+
+.highlight-field-card:focus-within {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15), 0 8px 20px rgba(245, 158, 11, 0.08);
+}
+
+.field-card-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.field-icon-box {
+  width: 32px;
+  height: 32px;
   border-radius: var(--radius-sm);
-  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.icon-orange { background: #fff7ed; color: #ea580c; border: 1px solid #fed7aa; }
+.icon-green { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+.icon-blue { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+.icon-red { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+.icon-gold { background: #fefce8; color: #d97706; border: 1px solid #fef08a; }
+
+.field-label-wrap {
+  flex: 1;
+}
+
+.field-label-wrap label {
   font-size: 11px;
+  font-weight: 800;
+  color: #1e293b;
+  display: block;
+  line-height: 1.2;
+}
+
+.field-helper-hint {
+  font-size: 9px;
+  color: var(--text-muted);
+  display: block;
+}
+
+.field-input-box input,
+.field-input-box textarea,
+.field-input-box select {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--text-main);
   outline: none;
+  transition: var(--transition);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.field-input-box input:focus,
+.field-input-box textarea:focus,
+.field-input-box select:focus {
+  border-color: var(--primary);
+  background: #ffffff;
+}
+
+.field-input-box.with-prefix {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.field-input-box.with-prefix input {
+  border: none;
+  box-shadow: none;
+  padding: 10px 10px;
+}
+
+.phone-prefix-badge {
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 10px 10px;
+  border-right: 1px solid #cbd5e1;
+  white-space: nowrap;
+}
+
+/* ⚡ 1-TAP REASON PRESET CHIPS */
+.reason-chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.reason-chip-btn {
+  background: #ffffff;
+  border: 1.5px solid #fed7aa;
+  border-radius: var(--radius-full);
+  padding: 5px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #7c2d12;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.reason-chip-btn:hover {
+  border-color: #ea580c;
+  background: #fff7ed;
+  transform: translateY(-1px);
+}
+
+.reason-chip-btn.selected {
+  background: #ea580c;
+  color: #ffffff;
+  border-color: #ea580c;
+  box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3);
+}
+
+/* Price CTA Bar */
+.price-cta-bar {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px 0;
+}
+
+.price-cta-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.cta-price-label {
+  font-size: 9px;
+  color: #94a3b8;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.cta-price-val {
+  font-family: 'Outfit', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: #fb923c;
+  line-height: 1.1;
+}
+
+.cta-price-sub {
+  font-size: 8px;
+  color: #94a3b8;
+}
+
+.price-cta-badge {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+.price-cta-badge span {
+  font-size: 8px;
+  color: #cbd5e1;
+  display: block;
+}
+
+.price-cta-badge strong {
+  font-size: 9px;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+/* Shimmer CTA Button */
+.btn-shimmer {
+  background: linear-gradient(90deg, #ff5722 0%, #f57c00 40%, #ff8a65 70%, #ff5722 100%);
+  background-size: 200% auto;
+  animation: shimmerBtn 3s infinite linear;
+  box-shadow: 0 4px 20px rgba(255, 87, 34, 0.35);
+}
+
+@keyframes shimmerBtn {
+  to { background-position: 200% center; }
+}
+
+.btn-xl {
+  padding: 14px 18px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+
+/* Quick Track Chips & Search */
+.quick-track-chips {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.chip-hint {
+  font-size: 9px;
+  color: #9a3412;
+  font-weight: 700;
+}
+
+.sample-track-pill {
+  background: #ffffff;
+  border: 1px solid #fdba74;
+  color: #7c2d12;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
   transition: var(--transition);
 }
 
-.clean-form input:focus,
-.clean-form textarea:focus,
-.clean-form select:focus {
-  background: #ffffff;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1);
+.sample-track-pill:hover {
+  background: #ea580c;
+  color: #ffffff;
+  border-color: #ea580c;
+}
+
+.btn-track-cta {
+  padding: 6px 14px;
+  white-space: nowrap;
+}
+
+/* Cart Checkout Fields */
+.cart-checkout-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 /* ================= 8. STORE (2-COLUMN TILES) ================= */
