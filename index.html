@@ -6,13 +6,13 @@
   <meta name="theme-color" content="#ea580c">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="description" content="Balaji Ki Kripa - 15-Minute Instant Devotional & Temple Prasad Delivery Store">
-  <title>श्री बालाजी कृपा | Balaji Ki Kripa - Quick Devotional Store</title>
+  <meta name="description" content="श्री बालाजी कृपा - Official Devotee App for Darshan, Darbar Registration, Sawamani Seva, YouTube Podcasts & Divya Store">
+  <title>श्री बालाजी कृपा | Balaji Ki Kripa - Official App</title>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Noto+Sans+Devanagari:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="styles.css">
   <link rel="manifest" href="manifest.json">
@@ -20,20 +20,14 @@
 <body>
   <div id="app" class="app-container">
     
-    <!-- Top Delivery & Header Bar -->
+    <!-- Top App Header -->
     <header class="top-nav">
-      <div class="delivery-row">
-        <div class="delivery-info">
-          <div class="delivery-badge">
-            <span class="pulse-icon">⚡</span>
-            <span class="delivery-time" data-i18n="quickDelivery">15 MINS</span>
-          </div>
-          <div class="delivery-address-container" id="addressSelectorBtn">
-            <div class="address-label">
-              <span data-i18n="deliveringTo">Delivering to</span>
-              <span class="dropdown-arrow">▼</span>
-            </div>
-            <div class="address-val" id="selectedAddressText">Home - Sector 14, Urban Estate...</div>
+      <div class="nav-brand-row">
+        <div class="brand-title-wrap">
+          <span class="om-symbol">🕉️</span>
+          <div>
+            <h1 class="brand-title">श्री बालाजी कृपा</h1>
+            <p class="brand-subtitle" data-i18n="officialDevoteeApp">Official Devotee Platform</p>
           </div>
         </div>
         
@@ -44,25 +38,10 @@
             <span class="current-lang-code" id="currentLangBadge">EN</span>
           </button>
           
-          <!-- Role Switch (User / Admin) -->
-          <button class="icon-btn admin-toggle-btn" id="adminToggleBtn" title="Admin Portal">
-            <span id="roleIcon">🛡️</span>
-            <span class="role-badge" id="roleBadgeText">Admin</span>
-          </button>
-
-          <!-- User Profile Avatar -->
+          <!-- Devotee Profile / Token Avatar -->
           <button class="icon-btn user-profile-btn" id="userProfileBtn">
-            <div class="avatar" id="headerAvatar">SG</div>
+            <div class="avatar" id="headerAvatar">🙏</div>
           </button>
-        </div>
-      </div>
-
-      <!-- Quick Search Bar -->
-      <div class="search-bar-wrap">
-        <div class="search-box">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="searchInput" placeholder="Search for Prasad, Gada, Dhoop, Murti..." data-i18n-placeholder="searchPlaceholder" autocomplete="off">
-          <button class="clear-search-btn hidden" id="clearSearchBtn">✕</button>
         </div>
       </div>
     </header>
@@ -70,104 +49,258 @@
     <!-- Main Content Area -->
     <main class="main-content" id="mainContent">
       
-      <!-- ================= STORE VIEW ================= -->
-      <section id="storeSection" class="view-section active">
+      <!-- ================= 1. HOME / DARSHAN & DARBAR VIEW ================= -->
+      <section id="homeSection" class="view-section active">
         
-        <!-- Live Festive Promo Carousel -->
-        <div class="promo-banner">
-          <div class="promo-card">
-            <div class="promo-content">
-              <span class="promo-tag" data-i18n="festiveSpecial">🔥 TUESDAY SPECIAL BLESSING</span>
-              <h2 data-i18n="heroBannerTitle">Direct from Salasar & Mehndipur Balaji</h2>
-              <p data-i18n="heroBannerSub">Get 100% Pure Besan Ladoo Prasad & Blessed Raksha Sutra delivered in minutes.</p>
-              <div class="promo-coupon">
-                <span data-i18n="useCode">Use Code:</span> <strong>BALAJI108</strong> (10% OFF)
+        <!-- Live Darbar Notification Banner -->
+        <div class="live-darbar-banner" id="liveDarbarBanner">
+          <div class="live-badge-row">
+            <span class="live-indicator-dot"></span>
+            <span class="live-badge-text" data-i18n="liveAlertTitle">🔴 LIVE DARBAR NOTIFICATION</span>
+          </div>
+          <h3 id="bannerDarbarTitle">श्री बालाजी महाराज दिव्य दरबार - आगामी मंगलवार</h3>
+          <p id="bannerDarbarTime">📅 Date: 18th August | ⏰ 10:00 AM Onwards</p>
+          <div class="banner-actions">
+            <button class="btn btn-gold btn-sm" id="registerDarbarQuickBtn" data-i18n="registerToken">🎟️ Register Free Token</button>
+            <a href="https://www.youtube.com/@balajikikripa" target="_blank" rel="noopener" class="btn btn-dark-outline btn-sm">▶️ Watch Live on YouTube</a>
+          </div>
+        </div>
+
+        <!-- Divine Balaji Blessing Card -->
+        <div class="divine-blessing-card">
+          <div class="blessing-header">
+            <span class="blessing-tag" data-i18n="dailyBlessing">🌟 DAILY DARSHAN & ANUBHAV</span>
+            <span class="temple-name">सालासर - मेहंदीपुर बालाजी</span>
+          </div>
+          <div class="blessing-quote">
+            <p>“कवन सो काज कठिन जग माहीं। जो नहिं होत तात तुम्ह पाहीं॥”</p>
+            <span class="quote-sub" data-i18n="blessingSub">Balaji Maharaj's divine grace removes every obstacle in your life.</span>
+          </div>
+        </div>
+
+        <!-- Quick Seva & Action Short-cuts -->
+        <div class="quick-grid">
+          <div class="quick-card" id="quickSawamaniCard">
+            <div class="quick-icon">🍯</div>
+            <div class="quick-info">
+              <h4 data-i18n="sawamaniSeva">सवामणि सेवा</h4>
+              <p>₹11,000 Book Bhog</p>
+            </div>
+            <span class="quick-arrow">›</span>
+          </div>
+
+          <div class="quick-card" id="quickStoreCard">
+            <div class="quick-icon">📖</div>
+            <div class="quick-info">
+              <h4 data-i18n="divyaStore">दिव्य भण्डार</h4>
+              <p>Divya Book & Samagri</p>
+            </div>
+            <span class="quick-arrow">›</span>
+          </div>
+        </div>
+
+        <!-- Upcoming Darbars List Section -->
+        <div class="section-container">
+          <div class="section-title-row">
+            <div>
+              <h3 data-i18n="upcomingDarbars">Upcoming Divya Darbar Schedule</h3>
+              <p class="section-sub" data-i18n="darbarSub">Register token in advance for entry and sankalp</p>
+            </div>
+          </div>
+
+          <div class="darbar-schedule-list" id="darbarScheduleList">
+            <!-- Dynamically Injected Darbar Events -->
+          </div>
+        </div>
+
+        <!-- Official YouTube Channels & In-App Video Player -->
+        <div class="section-container">
+          <div class="section-title-row">
+            <div>
+              <h3 data-i18n="officialYtVideos">Official Videos & Podcasts</h3>
+              <p class="section-sub" data-i18n="ytChannelsSub">Watch Satsang, Darbar Vlogs, Movies & Podcasts</p>
+            </div>
+          </div>
+
+          <!-- YouTube Channel Filter Tabs -->
+          <div class="yt-channel-tabs" id="ytChannelTabs">
+            <button class="yt-tab active" data-channel="main">@balajikikripa</button>
+            <button class="yt-tab" data-channel="vlogs">@Balajikikripavlogs</button>
+            <button class="yt-tab" data-channel="movies">@Balajikikripa_movies</button>
+            <button class="yt-tab" data-channel="podcasts">@बालाजीकीकृपाPodcasts</button>
+          </div>
+
+          <!-- YouTube Video Cards Feed -->
+          <div class="yt-videos-grid" id="ytVideosGrid">
+            <!-- Dynamic Video Cards with Embed & Open in YT buttons -->
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ================= 2. SAWAMANI SEVA VIEW ================= -->
+      <section id="sawamaniSection" class="view-section">
+        <div class="section-page-header">
+          <span class="page-badge">🙏 SHREE BALAJI SEVA</span>
+          <h2>श्री बालाजी सवामणि भोग सेवा</h2>
+          <p class="page-sub-desc">50 किलो (सवा मन) शुद्ध देसी घी बेसन लड्डू भोग अर्पण</p>
+        </div>
+
+        <!-- Explanation Card: Why Offer Sawamani -->
+        <div class="sawamani-info-card">
+          <div class="info-card-header">
+            <span class="info-icon">🪔</span>
+            <h3>सवामणि क्यों लगाई जाती है? (Significance of Sawamani)</h3>
+          </div>
+          <div class="info-content">
+            <p><strong>सवामणि</strong> का अर्थ होता है <strong>सवा मन (लगभग 50 किलोग्राम)</strong> शुद्ध देसी घी के बेसन के लड्डुओं का भोग श्री बालाजी महाराज के चरणों में समर्पित करना।</p>
+            <ul>
+              <li>✨ <strong>मनोकामना पूर्ति:</strong> जब भक्त की कोई विशेष प्रार्थना, संकट निवारण या मनोकामना पूरी होती है, तो कृतज्ञता स्वरूप सवामणि लगाई जाती है।</li>
+              <li>🛡️ <strong>संकट व रोग मुक्ति:</strong> घर-परिवार पर आए भारी संकट, रोग, प्रेत बाधा या आर्थिक तंगी से मुक्ति हेतु विशेष संकल्पित सवामणि।</li>
+              <li>🍯 <strong>महाप्रसाद वितरण:</strong> भोग लगने के पश्चात यह प्रसाद दरबार में आए हजारों भक्तों व जरूरतमंदों में बांटा जाता है, जिसका अनंत पुण्य प्राप्त होता है।</li>
+              <li>📦 <strong>अभिमंत्रित प्रसाद घर डिलीवरी:</strong> भोग का सिद्ध प्रसाद पैकेट आपके घर के पते पर स्पीड पोस्ट द्वारा भेजा जाता है।</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Sawamani Booking Card & Pricing -->
+        <div class="sawamani-booking-card">
+          <div class="pricing-banner">
+            <div>
+              <span class="price-label">सवामणि सेवा सहयोग राशि (India):</span>
+              <div class="price-amount">₹11,000 <span>(Fixed Seva Amount)</span></div>
+            </div>
+            <span class="pure-badge">100% शुद्ध देसी घी</span>
+          </div>
+
+          <form id="sawamaniBookingForm" class="sawamani-form">
+            <div class="form-group">
+              <label>भक्त का पूरा नाम (Devotee Full Name) *</label>
+              <input type="text" id="sawamaniName" required placeholder="e.g. Ramesh Kumar Sharma">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>पिता/पति का नाम (Father/Husband Name) *</label>
+                <input type="text" id="sawamaniFatherName" required placeholder="e.g. Shri Om Prakash">
+              </div>
+              <div class="form-group">
+                <label>गोत्र (Gotra) *</label>
+                <input type="text" id="sawamaniGotra" required placeholder="e.g. Kashyap / Vats">
               </div>
             </div>
-            <div class="promo-art">
-              <div class="diya-glow">🪔</div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>मोबाइल नंबर (WhatsApp Number) *</label>
+                <input type="tel" id="sawamaniPhone" required placeholder="+91 98765 43210">
+              </div>
+              <div class="form-group">
+                <label>भोग लगाने की तिथि (Preferred Date) *</label>
+                <input type="date" id="sawamaniDate" required>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <!-- Temple Aarti & Chanting Live Bar -->
-        <div class="live-blessing-card">
-          <div class="live-indicator">
-            <span class="live-dot"></span> <span data-i18n="liveDarshan">LIVE TEMPLE DARSHAN</span>
-          </div>
-          <div class="live-text" data-i18n="sandhyaAarti">Morning Shringaar Aarti Blessed Prasad Available Today</div>
-          <button class="sankalp-btn" id="openSankalpBtn">
-            <span data-i18n="bookSankalp">🙏 Add Free Sankalp</span>
-          </button>
-        </div>
+            <div class="form-group">
+              <label>सवामणि लगाने का कारण / संकल्प (Reason / Sankalp Purpose) *</label>
+              <textarea id="sawamaniReason" rows="3" required placeholder="लिखें: स्वास्थ्य लाभ, व्यापार में वृद्धि, विवाह, परीक्षा सफलता, संकट निवारण या मनोकामना पूर्ण होने पर आभार..."></textarea>
+            </div>
 
-        <!-- Category Filter Pills (Swiggy / Zepto Style) -->
-        <div class="category-scroll-container">
-          <div class="category-pills" id="categoryPills">
-            <!-- Dynamically Rendered Categories -->
-          </div>
-        </div>
+            <div class="form-group">
+              <label>प्रसाद प्राप्ति का पूरा पता (Complete Address for Prasad Dispatch) *</label>
+              <textarea id="sawamaniAddress" rows="2" required placeholder="मकान नं, गली, शहर, जिला, राज्य, पिनकोड"></textarea>
+            </div>
 
-        <!-- Section Title & Filter Summary -->
-        <div class="section-header">
-          <h3 id="currentCategoryTitle" data-i18n="allProducts">All Divine Products</h3>
-          <span class="product-count-badge" id="productCountBadge">20 Items</span>
-        </div>
-
-        <!-- Product Grid -->
-        <div class="product-grid" id="productGrid">
-          <!-- Dynamically Injected Product Cards -->
+            <button type="submit" class="btn btn-gold btn-block btn-lg" id="submitSawamaniBtn">
+              🙏 सवामणि संकल्प करें एवं ₹11,000 भुगतान करें ➔
+            </button>
+          </form>
         </div>
 
       </section>
 
-      <!-- ================= ORDERS VIEW ================= -->
+      <!-- ================= 3. DIVYA STORE VIEW ================= -->
+      <section id="storeSection" class="view-section">
+        <div class="section-page-header">
+          <span class="page-badge">📦 OFFICIAL SEVA BHANDAR</span>
+          <h2>दिव्य ग्रन्थ एवं सामग्री भण्डार</h2>
+          <p class="page-sub-desc">श्री बालाजी कृपा द्वारा प्रमाणित सिद्ध पुस्तकें एवं पंचरत्न सामग्री</p>
+        </div>
+
+        <!-- Store Notice & Shipping Note -->
+        <div class="store-notice-card">
+          <span class="notice-icon">ℹ️</span>
+          <div>
+            <strong>पारदर्शी मूल्य एवं शिपिंग:</strong>
+            <p>दिव्य पुस्तक एकल प्रति उपलब्ध है। पंचरत्न सामग्री विशेष सुरक्षा एवं नियम अनुसार <strong>बैच (5, 10, 20, 50)</strong> में ही प्रेषित की जाती है। डाक/कोरियर शुल्क स्थान के आधार पर पारदर्शी रूप से जोड़ा जाता है।</p>
+          </div>
+        </div>
+
+        <!-- Featured Products Grid -->
+        <div class="store-products-list" id="storeProductsList">
+          <!-- Dynamic Divya Book & Batch Panchratna Samagri Cards -->
+        </div>
+
+      </section>
+
+      <!-- ================= 4. MY BOOKINGS & ORDERS VIEW ================= -->
       <section id="ordersSection" class="view-section">
         <div class="section-page-header">
-          <h2 data-i18n="myOrders">My Devotional Orders</h2>
-          <p data-i18n="trackOrdersDesc">Real-time status of your temple prasad and puja items</p>
+          <h2>मेरी सेवाएं एवं पंजीकरण</h2>
+          <p class="page-sub-desc">दरबार टोकन, सवामणि भोग स्थिति एवं सामग्री ट्रैकिंग</p>
         </div>
 
-        <div class="orders-list" id="ordersList">
-          <!-- Dynamically Injected Orders -->
+        <div class="bookings-tabs">
+          <button class="booking-tab active" data-target="darbarTokensTab">🎟️ दरबार टोकन</button>
+          <button class="booking-tab" data-target="sawamaniBookingsTab">🍯 सवामणि भोग</button>
+          <button class="booking-tab" data-target="storeOrdersTab">📦 सामग्री ऑर्डर्स</button>
+        </div>
+
+        <div id="darbarTokensTab" class="booking-tab-content active">
+          <div class="tokens-list" id="tokensList">
+            <!-- Dynamic Darbar Registration Tokens -->
+          </div>
+        </div>
+
+        <div id="sawamaniBookingsTab" class="booking-tab-content">
+          <div class="sawamani-list" id="sawamaniList">
+            <!-- Dynamic Sawamani Bookings -->
+          </div>
+        </div>
+
+        <div id="storeOrdersTab" class="booking-tab-content">
+          <div class="store-orders-list" id="storeOrdersList">
+            <!-- Dynamic Store Orders -->
+          </div>
         </div>
       </section>
 
-      <!-- ================= PROFILE VIEW ================= -->
+      <!-- ================= 5. PROFILE & ADMIN PORTAL VIEW ================= -->
       <section id="profileSection" class="view-section">
         <div class="profile-card">
           <div class="profile-avatar-large">🕉️</div>
-          <h3 id="profileName">Sparsh Garg</h3>
+          <h3 id="profileName">श्री बालाजी भक्त</h3>
           <p id="profilePhone">+91 98765 43210</p>
           <div class="devotee-badge">
-            <span>⭐ Param Bhakt (108 Points)</span>
+            <span>🚩 पंजीकृत भक्त</span>
           </div>
         </div>
 
         <div class="profile-menu">
-          <div class="menu-item" id="openAddressModal">
-            <span class="menu-icon">📍</span>
-            <div class="menu-text">
-              <h4 data-i18n="savedAddresses">Saved Delivery Addresses</h4>
-              <p id="profileSavedAddress">Home - Sector 14, Urban Estate</p>
-            </div>
-            <span class="menu-arrow">›</span>
-          </div>
-
           <div class="menu-item" id="openLangFromProfile">
             <span class="menu-icon">🌐</span>
             <div class="menu-text">
-              <h4 data-i18n="appLanguage">App Language</h4>
-              <p id="profileCurrentLang">English (हिंदी / தமிழ் / తెలుగు...)</p>
+              <h4>ऐप भाषा (Change Language)</h4>
+              <p id="profileCurrentLang">English (हिंदी / संस्कृतम् / ગુજરાતી...)</p>
             </div>
             <span class="menu-arrow">›</span>
           </div>
 
-          <div class="menu-item" id="openDonationHistory">
+          <div class="menu-item" id="openAboutUs">
             <span class="menu-icon">🚩</span>
             <div class="menu-text">
-              <h4 data-i18n="bhandaraSeva">Temple Bhandara & Seva</h4>
-              <p data-i18n="bhandaraSevaSub">Contribute to Gaushala & Daily Langar</p>
+              <h4>श्री बालाजी कृपा के बारे में (About Us)</h4>
+              <p>Official Channels, Trust & Mission</p>
             </div>
             <span class="menu-arrow">›</span>
           </div>
@@ -175,91 +308,119 @@
           <div class="menu-item" id="openHelpSupport">
             <span class="menu-icon">📞</span>
             <div class="menu-text">
-              <h4 data-i18n="helpSupport">Temple Helpline & Support</h4>
-              <p>24x7 WhatsApp & Call Support</p>
+              <h4>दरबार हेल्पलाइन एवं सहायता</h4>
+              <p>WhatsApp & Phone Support</p>
+            </div>
+            <span class="menu-arrow">›</span>
+          </div>
+
+          <!-- Secure Admin Portal Link (Opens Passcode Prompt) -->
+          <div class="menu-item admin-portal-link" id="openAdminLoginModalBtn">
+            <span class="menu-icon">🔐</span>
+            <div class="menu-text">
+              <h4>प्रशासक लॉगिन (Admin Portal)</h4>
+              <p>Authorized Sevadars & Temple Admin only</p>
             </div>
             <span class="menu-arrow">›</span>
           </div>
         </div>
-      </section>
 
-      <!-- ================= ADMIN PORTAL VIEW ================= -->
-      <section id="adminSection" class="view-section">
-        <div class="admin-header-panel">
-          <div>
-            <h2>🛡️ <span data-i18n="adminDashboard">Admin Command Center</span></h2>
-            <p data-i18n="adminSubtitle">Manage Store Inventory, Stock Quantities & Customer Orders</p>
+        <!-- Active Admin Dashboard (Only shown when Admin is Authenticated) -->
+        <div class="admin-dashboard-container hidden" id="adminDashboardContainer">
+          <div class="admin-dashboard-header">
+            <div>
+              <h3>🛡️ Admin Command Center</h3>
+              <p>Authorized Admin: <strong id="currentAdminUser">Chief Sevadar</strong></p>
+            </div>
+            <button class="btn btn-outline btn-sm" id="adminLogoutBtn">Logout</button>
           </div>
-          <button class="btn btn-primary btn-sm" id="addNewProductBtn">+ <span data-i18n="addNewItem">Add Item</span></button>
-        </div>
 
-        <!-- Admin Quick Metrics -->
-        <div class="admin-metrics-grid">
-          <div class="metric-card">
-            <div class="metric-icon">💰</div>
-            <div class="metric-data">
-              <span class="metric-label" data-i18n="totalRevenue">Total Sales</span>
-              <h3 id="adminRevenue">₹48,920</h3>
+          <div class="admin-stats-grid">
+            <div class="admin-stat-card">
+              <span class="stat-label">Total Sawamani</span>
+              <h4 id="adminTotalSawamani">₹0</h4>
+            </div>
+            <div class="admin-stat-card">
+              <span class="stat-label">Darbar Tokens</span>
+              <h4 id="adminTotalTokens">0</h4>
+            </div>
+            <div class="admin-stat-card">
+              <span class="stat-label">Store Orders</span>
+              <h4 id="adminTotalStoreOrders">0</h4>
             </div>
           </div>
-          <div class="metric-card">
-            <div class="metric-icon">📦</div>
-            <div class="metric-data">
-              <span class="metric-label" data-i18n="totalOrders">Total Orders</span>
-              <h3 id="adminOrderCount">34</h3>
+
+          <!-- Admin Management Tabs -->
+          <div class="admin-tabs-nav">
+            <button class="admin-subtab active" data-admin-panel="adminSawamaniPanel">🍯 Sawamani Sevas</button>
+            <button class="admin-subtab" data-admin-panel="adminDarbarPanel">🎟️ Darbar Tokens</button>
+            <button class="admin-subtab" data-admin-panel="adminStorePanel">📦 Store & Batch Inventory</button>
+          </div>
+
+          <!-- Admin Panels -->
+          <div id="adminSawamaniPanel" class="admin-subpanel active">
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Devotee / Gotra</th>
+                    <th>Date / Sankalp</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="adminSawamaniTableBody">
+                  <!-- Dynamic Sawamani Rows -->
+                </tbody>
+              </table>
             </div>
           </div>
-          <div class="metric-card">
-            <div class="metric-icon">⚠️</div>
-            <div class="metric-data">
-              <span class="metric-label" data-i18n="lowStockItems">Low Stock</span>
-              <h3 id="adminLowStockCount">2 Items</h3>
+
+          <div id="adminDarbarPanel" class="admin-subpanel">
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Token #</th>
+                    <th>Devotee Name</th>
+                    <th>City / Phone</th>
+                    <th>Darbar Event</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="adminTokensTableBody">
+                  <!-- Dynamic Token Rows -->
+                </tbody>
+              </table>
             </div>
           </div>
-        </div>
 
-        <!-- Admin Tabs -->
-        <div class="admin-tabs">
-          <button class="admin-tab active" id="adminTabOrders" data-target="adminOrdersPanel">
-            📋 <span data-i18n="customerOrders">Live Orders</span> (<span id="adminPendingOrdersCount">0</span>)
-          </button>
-          <button class="admin-tab" id="adminTabInventory" data-target="adminInventoryPanel">
-            🏷️ <span data-i18n="inventoryStock">Inventory & Stock</span>
-          </button>
-        </div>
-
-        <!-- Admin Orders Tab Panel -->
-        <div id="adminOrdersPanel" class="admin-panel active">
-          <div class="admin-orders-list" id="adminOrdersList">
-            <!-- Dynamic Admin Orders List -->
+          <div id="adminStorePanel" class="admin-subpanel">
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Item / Batch</th>
+                    <th>Base Price</th>
+                    <th>Stock Left</th>
+                    <th>Update Stock</th>
+                  </tr>
+                </thead>
+                <tbody id="adminInventoryTableBody">
+                  <!-- Dynamic Inventory Rows -->
+                </tbody>
+              </table>
+            </div>
           </div>
+
         </div>
 
-        <!-- Admin Inventory Tab Panel -->
-        <div id="adminInventoryPanel" class="admin-panel">
-          <div class="inventory-table-container">
-            <table class="inventory-table">
-              <thead>
-                <tr>
-                  <th data-i18n="product">Product</th>
-                  <th data-i18n="category">Category</th>
-                  <th data-i18n="price">Price</th>
-                  <th data-i18n="stock">Stock Available</th>
-                  <th data-i18n="status">Status</th>
-                  <th data-i18n="actions">Actions</th>
-                </tr>
-              </thead>
-              <tbody id="adminInventoryTableBody">
-                <!-- Dynamic Inventory Rows -->
-              </tbody>
-            </table>
-          </div>
-        </div>
       </section>
 
     </main>
 
-    <!-- Floating Bottom Cart Bar (Swiggy/Zepto Style) -->
+    <!-- Floating Store Cart Bar (Only when on Store Tab and items added) -->
     <div class="floating-cart-bar hidden" id="floatingCartBar">
       <div class="cart-bar-info">
         <div class="cart-bar-count">
@@ -267,258 +428,248 @@
           <span class="cart-bar-divider">|</span>
           <span id="cartTotalPrice">₹0</span>
         </div>
-        <div class="cart-bar-savings" id="cartSavingsText">Saved ₹0 with BALAJI108</div>
+        <div class="cart-bar-savings" id="cartShippingNote">+ Dynamic Shipping</div>
       </div>
       <button class="cart-view-btn" id="openCartDrawerBtn">
-        <span data-i18n="viewCart">View Cart</span> 🛒 →
+        <span>View Basket</span> 🛒 →
       </button>
     </div>
 
-    <!-- Bottom Navigation Bar (Mobile Native App Style) -->
+    <!-- Bottom Navigation Bar -->
     <nav class="bottom-nav">
-      <button class="nav-item active" data-nav="store">
-        <span class="nav-icon">🛍️</span>
-        <span class="nav-label" data-i18n="store">Store</span>
+      <button class="nav-item active" data-nav="home">
+        <span class="nav-icon">🕉️</span>
+        <span class="nav-label" data-i18n="navHome">Home</span>
+      </button>
+
+      <button class="nav-item" data-nav="sawamani">
+        <span class="nav-icon">🍯</span>
+        <span class="nav-label" data-i18n="navSawamani">Sawamani</span>
+      </button>
+      
+      <button class="nav-item" data-nav="store">
+        <span class="nav-icon">📖</span>
+        <span class="nav-label" data-i18n="navStore">Store</span>
       </button>
       
       <button class="nav-item" data-nav="orders">
-        <span class="nav-icon">📦</span>
-        <span class="nav-label" data-i18n="orders">Orders</span>
-        <span class="nav-badge hidden" id="navOrdersBadge">1</span>
-      </button>
-
-      <button class="nav-item" data-nav="admin">
-        <span class="nav-icon">🛡️</span>
-        <span class="nav-label" data-i18n="admin">Admin</span>
+        <span class="nav-icon">📋</span>
+        <span class="nav-label" data-i18n="navBookings">My Sevas</span>
       </button>
 
       <button class="nav-item" data-nav="profile">
         <span class="nav-icon">👤</span>
-        <span class="nav-label" data-i18n="profile">Profile</span>
+        <span class="nav-label" data-i18n="navProfile">Profile</span>
       </button>
     </nav>
 
     <!-- ================= MODALS & DRAWERS ================= -->
 
-    <!-- Cart / Checkout Drawer -->
+    <!-- Darbar Registration Modal -->
+    <div class="modal-backdrop hidden" id="darbarModalBackdrop">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>🎟️ दरबार प्रवेश टोकन पंजीकरण</h3>
+          <button class="modal-close-btn" id="closeDarbarModalBtn">✕</button>
+        </div>
+        <form id="darbarRegisterForm">
+          <input type="hidden" id="darbarEventId">
+          <div class="form-group">
+            <label>चयनित दरबार (Selected Darbar)</label>
+            <input type="text" id="darbarEventName" readonly class="input-readonly">
+          </div>
+          <div class="form-group">
+            <label>भक्त का नाम (Devotee Name) *</label>
+            <input type="text" id="tokenDevoteeName" required placeholder="e.g. Sparsh Garg">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>मोबाइल नंबर (Phone) *</label>
+              <input type="tel" id="tokenDevoteePhone" required placeholder="+91 98765 43210">
+            </div>
+            <div class="form-group">
+              <label>शहर / राज्य (City / State) *</label>
+              <input type="text" id="tokenDevoteeCity" required placeholder="e.g. Hisar, Haryana">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>सदस्यों की संख्या (Persons attending)</label>
+            <select id="tokenPersons">
+              <option value="1">1 Person</option>
+              <option value="2">2 Persons</option>
+              <option value="3">3 Persons</option>
+              <option value="4">4 Persons</option>
+              <option value="5+">Family (5+)</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-gold btn-block btn-lg">🎟️ Generate Free Darbar Token</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Store Cart & Checkout Drawer (Dynamic Location-Based Shipping) -->
     <div class="drawer-backdrop hidden" id="cartDrawerBackdrop">
       <div class="drawer-panel" id="cartDrawer">
         <div class="drawer-header">
           <div class="drawer-title-row">
-            <h3 data-i18n="myCart">Your Devotional Basket</h3>
+            <h3>दिव्य भण्डार टोकरी (Store Basket)</h3>
             <button class="drawer-close-btn" id="closeCartDrawerBtn">✕</button>
-          </div>
-          <div class="delivery-estimate-pill">
-            <span>⚡ <strong data-i18n="deliveryIn">Delivery in:</strong> 15 mins to Home</span>
           </div>
         </div>
 
-        <div class="drawer-body" id="cartDrawerBody">
-          <!-- Cart Items List -->
+        <div class="drawer-body">
           <div class="cart-items-list" id="cartItemsList">
-            <!-- Dynamic Cart Items -->
+            <!-- Dynamic Cart items -->
           </div>
 
-          <!-- Free Sankalp / Devotee Prayer Note -->
-          <div class="cart-sankalp-box">
-            <div class="sankalp-box-header">
-              <span>🙏 <strong data-i18n="templeSankalp">Temple Sankalp & Gotra</strong></span>
-              <span class="free-badge" data-i18n="free">FREE</span>
+          <!-- Dynamic Shipping State Selector -->
+          <div class="shipping-calculator-card">
+            <div class="shipping-header">
+              <span>📍 <strong>डिलीवरी राज्य चुनें (Select State for Shipping)</strong></span>
             </div>
-            <input type="text" id="cartSankalpName" placeholder="Enter Devotee Name & Gotra for Puja" data-i18n-placeholder="enterNameGotra">
+            <select id="shippingStateSelector">
+              <option value="delhi_ncr">Delhi / NCR & Haryana (₹50 Standard Shipping)</option>
+              <option value="north_india">North India (UP, Punjab, Rajasthan, HP, UK) (₹70 Shipping)</option>
+              <option value="central_west">West & Central India (Maharashtra, Gujarat, MP) (₹90 Shipping)</option>
+              <option value="south_east">South & East India (Karnataka, TN, Bengal, Odisha) (₹110 Shipping)</option>
+              <option value="remote">North-East & Remote Regions (₹140 Shipping)</option>
+            </select>
           </div>
 
-          <!-- Coupon Box -->
-          <div class="coupon-section">
-            <div class="coupon-input-group">
-              <input type="text" id="couponInput" placeholder="Enter Coupon (e.g. BALAJI108)">
-              <button class="btn btn-outline" id="applyCouponBtn" data-i18n="apply">Apply</button>
-            </div>
-            <div class="coupon-applied-tag hidden" id="appliedCouponTag">
-              <span>🎉 <strong>BALAJI108</strong> Applied (-10% OFF)</span>
-              <button id="removeCouponBtn">✕</button>
-            </div>
+          <!-- Devotee Address for Shipping -->
+          <div class="cart-address-box">
+            <label>डिलीवरी का पूरा पता (Complete Postal Address) *</label>
+            <textarea id="cartPostalAddress" rows="2" placeholder="House No, Landmark, City, District, PIN Code"></textarea>
           </div>
 
-          <!-- Temple Bhandara Donation Add-on -->
-          <div class="donation-card">
-            <div class="donation-header">
-              <span class="donation-icon">🚩</span>
-              <div class="donation-text">
-                <h5 data-i18n="feedGauMata">Seva: Feed Gau Mata & Langar</h5>
-                <p data-i18n="sevaDesc">Add a token of devotion to Hanuman Temple</p>
-              </div>
-            </div>
-            <div class="donation-options">
-              <button class="donation-chip" data-amount="11">₹11</button>
-              <button class="donation-chip active" data-amount="21">₹21</button>
-              <button class="donation-chip" data-amount="51">₹51</button>
-              <button class="donation-chip" data-amount="108">₹108</button>
-            </div>
-          </div>
-
-          <!-- Bill Summary Breakdown -->
+          <!-- Bill Summary -->
           <div class="bill-summary">
-            <h4 data-i18n="billDetails">Bill Details</h4>
             <div class="bill-row">
-              <span data-i18n="itemTotal">Items Total</span>
-              <span id="billItemTotal">₹0</span>
+              <span>सामग्री मूल्य (Items Subtotal)</span>
+              <span id="billItemSubtotal">₹0</span>
             </div>
             <div class="bill-row">
-              <span data-i18n="deliveryFee">Delivery Fee (15 Mins)</span>
-              <span id="billDeliveryFee" class="text-green">FREE</span>
-            </div>
-            <div class="bill-row" id="billDiscountRow">
-              <span data-i18n="discount">Discount Coupon</span>
-              <span id="billDiscount" class="text-green">-₹0</span>
-            </div>
-            <div class="bill-row">
-              <span data-i18n="mandirSeva">Mandir Seva Contribution</span>
-              <span id="billDonation">₹21</span>
+              <span>डाक / कोरियर शुल्क (Shipping Charges)</span>
+              <span id="billShippingFee">₹50</span>
             </div>
             <div class="bill-row bill-grand-total">
-              <span data-i18n="toPay">To Pay</span>
+              <span>कुल देय राशि (Total Amount)</span>
               <span id="billGrandTotal">₹0</span>
             </div>
-          </div>
-
-          <!-- Delivery Address Preview -->
-          <div class="checkout-address-card" id="cartAddressCard">
-            <div class="address-preview-header">
-              <span>📍 <strong data-i18n="deliveryLocation">Delivery Address</strong></span>
-              <button class="btn-link" id="changeCartAddressBtn" data-i18n="change">Change</button>
-            </div>
-            <div class="address-preview-text" id="cartAddressPreview">Home - Sector 14, Urban Estate, Hisar, Haryana</div>
           </div>
         </div>
 
         <div class="drawer-footer">
-          <div class="footer-total">
-            <span class="footer-total-label" data-i18n="total">Total</span>
-            <span class="footer-total-val" id="drawerFooterTotal">₹0</span>
-          </div>
-          <button class="btn btn-primary btn-block" id="proceedToPayBtn">
-            <span data-i18n="proceedToPay">Proceed to Payment</span> ➔
+          <button class="btn btn-gold btn-block btn-lg" id="proceedStorePaymentBtn">
+            🔒 सुरक्षित भुगतान करें ➔
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Payment Gateway Modal -->
+    <!-- Generic Payment Gateway Modal (for Sawamani & Store) -->
     <div class="modal-backdrop hidden" id="paymentModalBackdrop">
       <div class="modal-card payment-modal">
         <div class="modal-header">
-          <h3 data-i18n="selectPaymentMethod">Select Payment Method</h3>
+          <h3 id="paymentTitle">श्री बालाजी सेवा भुगतान</h3>
           <button class="modal-close-btn" id="closePaymentModalBtn">✕</button>
         </div>
 
         <div class="payment-amount-banner">
-          <span data-i18n="amountPayable">Amount Payable:</span>
-          <strong id="paymentPayableAmount">₹450</strong>
+          <span>Amount to Pay:</span>
+          <strong id="paymentPayableAmount">₹11,000</strong>
         </div>
 
         <!-- Payment Options Tabs -->
         <div class="payment-methods-list">
-          
-          <!-- UPI Quick Options -->
-          <div class="payment-group">
-            <h5 data-i18n="upiApps">UPI / QR Code</h5>
-            
-            <label class="payment-option selected">
-              <input type="radio" name="paymentOption" value="upi_gpay" checked>
-              <div class="payment-option-details">
-                <span class="payment-icon">📱</span>
-                <div>
-                  <strong>Google Pay / PhonePe / Paytm</strong>
-                  <p>Fastest UPI instant checkout</p>
-                </div>
+          <label class="payment-option selected">
+            <input type="radio" name="paymentOption" value="upi_app" checked>
+            <div class="payment-option-details">
+              <span class="payment-icon">📱</span>
+              <div>
+                <strong>UPI Apps (Google Pay / PhonePe / Paytm)</strong>
+                <p>Instant direct temple donation transfer</p>
               </div>
-            </label>
-
-            <label class="payment-option">
-              <input type="radio" name="paymentOption" value="upi_qr">
-              <div class="payment-option-details">
-                <span class="payment-icon">📷</span>
-                <div>
-                  <strong data-i18n="scanQr">Scan & Pay via QR</strong>
-                  <p>Scan with any UPI app on phone</p>
-                </div>
-              </div>
-            </label>
-          </div>
-
-          <!-- Dynamic QR Container (shows when QR option picked) -->
-          <div class="qr-preview-box hidden" id="qrPreviewBox">
-            <div class="qr-code-art">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=balajikripa@upi&pn=Balaji%20Ki%20Kripa%20Store&am=450&cu=INR" alt="UPI QR" id="dynamicQrImage">
             </div>
-            <p class="qr-timer">⏳ QR expires in <span id="qrCountdown">04:59</span></p>
-          </div>
+          </label>
 
-          <!-- Cards & Netbanking -->
-          <div class="payment-group">
-            <h5 data-i18n="cardsNetbanking">Cards & Cash</h5>
-
-            <label class="payment-option">
-              <input type="radio" name="paymentOption" value="card">
-              <div class="payment-option-details">
-                <span class="payment-icon">💳</span>
-                <div>
-                  <strong data-i18n="debitCredit">Debit / Credit Card</strong>
-                  <p>Visa, MasterCard, RuPay</p>
-                </div>
+          <label class="payment-option">
+            <input type="radio" name="paymentOption" value="upi_qr">
+            <div class="payment-option-details">
+              <span class="payment-icon">📷</span>
+              <div>
+                <strong>Scan & Pay via Temple QR</strong>
+                <p>Scan with any mobile banking app</p>
               </div>
-            </label>
+            </div>
+          </label>
 
-            <label class="payment-option">
-              <input type="radio" name="paymentOption" value="cod">
-              <div class="payment-option-details">
-                <span class="payment-icon">💵</span>
-                <div>
-                  <strong data-i18n="cashOnDelivery">Cash on Delivery (COD)</strong>
-                  <p>Pay when Prasad is delivered</p>
-                </div>
+          <label class="payment-option">
+            <input type="radio" name="paymentOption" value="netbanking">
+            <div class="payment-option-details">
+              <span class="payment-icon">🏛️</span>
+              <div>
+                <strong>Net Banking / Debit Card</strong>
+                <p>All major Indian banks supported</p>
               </div>
-            </label>
-          </div>
-
+            </div>
+          </label>
         </div>
 
-        <button class="btn btn-primary btn-block btn-lg" id="confirmPaymentBtn">
-          🔒 <span data-i18n="paySecurely">Pay Securely</span> <span id="confirmPayAmount">₹0</span>
+        <!-- Dynamic QR Preview -->
+        <div class="qr-preview-box hidden" id="qrPreviewBox">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=balajikripa@upi&pn=Shree%20Balaji%20Ki%20Kripa%20Trust&am=11000&cu=INR" alt="Temple QR" id="dynamicPaymentQr">
+          <p class="qr-timer">⏳ Scan and complete in your UPI app</p>
+        </div>
+
+        <button class="btn btn-gold btn-block btn-lg" id="confirmPaymentBtn">
+          🔒 Complete Payment (<span id="confirmPayAmount">₹11,000</span>)
         </button>
       </div>
     </div>
 
-    <!-- Order Placed Success Modal -->
+    <!-- Success Confirmation Modal -->
     <div class="modal-backdrop hidden" id="successModalBackdrop">
       <div class="modal-card success-modal">
-        <div class="success-animation">
-          <div class="success-ring"></div>
-          <span class="success-om">🕉️</span>
-        </div>
-        <h2 data-i18n="orderSuccessTitle">Jai Shri Balaji! Order Placed</h2>
-        <p data-i18n="orderSuccessMsg">Your devotional items are being blessed and prepared for 15-min delivery.</p>
+        <div class="success-om-ring">🕉️</div>
+        <h2 id="successModalHeading">जय श्री बालाजी! सेवा संकल्प स्वीकृत</h2>
+        <p id="successModalMessage">आपका संकल्प श्री बालाजी महाराज के चरणों में समर्पित हो गया है।</p>
         
-        <div class="order-success-details">
+        <div class="success-details-card">
           <div class="detail-row">
-            <span data-i18n="orderId">Order ID:</span>
-            <strong id="successOrderId">#BKK-8921</strong>
+            <span>Reference ID:</span>
+            <strong id="successRefId">#BK-9912</strong>
           </div>
           <div class="detail-row">
-            <span data-i18n="estimatedArrival">Estimated Arrival:</span>
-            <strong class="text-green">15 Mins (10:15 AM)</strong>
+            <span>Devotee:</span>
+            <strong id="successDevoteeName">Ramesh Sharma</strong>
           </div>
           <div class="detail-row">
-            <span data-i18n="paymentMode">Payment:</span>
-            <strong id="successPaymentMode">UPI (Paid)</strong>
+            <span>Status:</span>
+            <strong class="text-green" id="successStatusBadge">CONFIRMED ✅</strong>
           </div>
         </div>
 
-        <div class="success-actions">
-          <button class="btn btn-primary btn-block" id="viewLiveTrackBtn" data-i18n="trackLiveOrder">Track Live Delivery 🚚</button>
-          <button class="btn btn-outline btn-block" id="continueShoppingBtn" data-i18n="continueShopping">Continue Shopping 🛍️</button>
+        <button class="btn btn-gold btn-block" id="successDoneBtn">View My Bookings / Sevas 📋</button>
+      </div>
+    </div>
+
+    <!-- Secure Admin Login Passcode Modal -->
+    <div class="modal-backdrop hidden" id="adminLoginModalBackdrop">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>🔐 Admin Authentication</h3>
+          <button class="modal-close-btn" id="closeAdminLoginModalBtn">✕</button>
         </div>
+        <p class="admin-login-hint">Only authorized temple sevadars have access to manage bookings, darbar tokens & stock.</p>
+        
+        <form id="adminLoginForm">
+          <div class="form-group">
+            <label>Admin Passcode (Default: BALAJI777)</label>
+            <input type="password" id="adminPasscodeInput" required placeholder="Enter secret passcode">
+          </div>
+          <button type="submit" class="btn btn-dark btn-block btn-lg">Unlock Admin Center 🔓</button>
+        </form>
       </div>
     </div>
 
@@ -526,7 +677,7 @@
     <div class="modal-backdrop hidden" id="langModalBackdrop">
       <div class="modal-card lang-modal">
         <div class="modal-header">
-          <h3 data-i18n="chooseLanguage">Choose App Language / भाषा चुनें</h3>
+          <h3>Choose Language / भाषा चुनें</h3>
           <button class="modal-close-btn" id="closeLangModalBtn">✕</button>
         </div>
         <div class="lang-grid">
@@ -562,61 +713,8 @@
       </div>
     </div>
 
-    <!-- Admin Add/Edit Product Modal -->
-    <div class="modal-backdrop hidden" id="productEditModalBackdrop">
-      <div class="modal-card product-form-modal">
-        <div class="modal-header">
-          <h3 id="productModalTitle">Add New Devotional Item</h3>
-          <button class="modal-close-btn" id="closeProductEditModalBtn">✕</button>
-        </div>
-        <form id="productEditForm">
-          <input type="hidden" id="editProductId">
-          <div class="form-group">
-            <label data-i18n="productName">Product Name (English / Hindi)</label>
-            <input type="text" id="editProductName" required placeholder="e.g. Salasar Shudh Desi Ghee Besan Ladoo">
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label data-i18n="category">Category</label>
-              <select id="editProductCategory">
-                <option value="prasad">Sacred Prasad</option>
-                <option value="idols">Idols & Murti</option>
-                <option value="puja">Puja Samagri</option>
-                <option value="mala">Rudraksha & Mala</option>
-                <option value="gada">Gada & Kawach</option>
-                <option value="books">Books & Chalisa</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label data-i18n="price">Price (₹)</label>
-              <input type="number" id="editProductPrice" required min="1" placeholder="250">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label data-i18n="originalPrice">Original MRP (₹)</label>
-              <input type="number" id="editProductMrp" placeholder="300">
-            </div>
-            <div class="form-group">
-              <label data-i18n="stock">Stock Available (Units)</label>
-              <input type="number" id="editProductStock" required min="0" placeholder="50">
-            </div>
-          </div>
-          <div class="form-group">
-            <label data-i18n="badgeTag">Badge Tag</label>
-            <input type="text" id="editProductBadge" placeholder="e.g. BESTSELLER / 100% PURE">
-          </div>
-          <div class="form-group">
-            <label data-i18n="iconEmoji">Icon Emoji / Symbol</label>
-            <input type="text" id="editProductIcon" placeholder="e.g. 🍯, 🔱, 🪔">
-          </div>
-          <button type="submit" class="btn btn-primary btn-block btn-lg" id="saveProductBtn" data-i18n="saveProduct">Save & Update Store</button>
-        </form>
-      </div>
-    </div>
-
     <!-- Toast Notification -->
-    <div id="toast" class="toast hidden">Item added to basket</div>
+    <div id="toast" class="toast hidden">Jai Shri Balaji!</div>
 
   </div>
 
