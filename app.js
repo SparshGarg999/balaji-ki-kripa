@@ -4,17 +4,19 @@
  * ===================================================================
  */
 
-// Application State
+// Global Application State
 const state = {
   lang: 'en', // 'en' or 'hi'
   isAdmin: false,
   activeNav: 'home',
+  activeAdminTab: 'adminOverviewTab',
   activeYtChannel: 'main',
   cart: {}, // { [id]: { name, nameHi, qty, price, isBatch, batchSize } }
   shippingState: 'delhi_ncr',
   shippingFee: 50,
   sawamaniBookings: [],
   storeOrders: [],
+  darbarPasses: [],
   products: []
 };
 
@@ -42,6 +44,9 @@ const i18n = {
     sawamaniTitle: 'Sawamani Seva',
     storeBadge: 'OFFICIAL STORE',
     storeTitle: 'Divya Store',
+    quickTrackTitle: 'Track Your Seva / Order Status',
+    quickTrackSub: 'Enter your Reference ID (e.g. SWM-1082 or ORD-5021)',
+    btnTrack: 'Track 🚚',
     darbarGuideTitle: 'Darbar Rules & What to Bring',
     darbarGuideSubtitle: 'Important instructions for all visiting devotees',
     guide1Title: 'Official Registration Link:',
@@ -61,9 +66,10 @@ const i18n = {
     sawamaniCostLabel: 'Sawamani Seva Amount:',
     sawamaniFixedTag: 'Fixed Seva Amount (50 Kg Pure Desi Ghee Bhog)',
     sankalpFormTitle: 'Devotee Sankalp Form',
-    sankalpFormSub: 'Please fill all 4 details accurately for Mahaprasad dispatch',
+    sankalpFormSub: 'Please fill all details accurately for Mahaprasad dispatch and email receipt',
     labelName: '1. Devotee Full Name (भक्त का पूरा नाम) *',
     labelPhone: '2. Mobile / WhatsApp Number (मोबाइल नंबर) *',
+    labelEmail: 'Email Address for Digital Receipt (ईमेल पता - रसीद हेतु)',
     labelAddress: '3. Complete Postal Address for Prasad Delivery (प्रसाद डिलीवरी का पूरा पता) *',
     labelReason: '4. Reason for Sawamani / Sankalp (सवामणि लगाने का कारण / संकल्प) *',
     btnPaySawamani: 'Book Sankalp & Pay ₹11,000 ➔',
@@ -74,7 +80,7 @@ const i18n = {
     storeDeliverySub: 'Speed Post / Express Courier with live tracking',
     mySevasPill: '📋 DEVOTEE HISTORY',
     mySevasHeading: 'My Sevas & Orders',
-    mySevasSub: 'Sawamani Bookings & Store Orders',
+    mySevasSub: 'Live Tracking, Digital Receipts & Booking History',
     tabSawamani: '🍯 Sawamani (सवामणि)',
     tabStore: '📦 Store Orders (ऑर्डर्स)',
     devoteeGreeting: 'Shree Balaji Devotee',
@@ -83,8 +89,8 @@ const i18n = {
     settingAbout: 'About Balaji Ki Kripa',
     settingAboutSub: 'Dham History & Mission',
     settingHelp: 'Helpline & WhatsApp Support',
-    settingAdmin: 'Admin Command Center',
-    settingAdminSub: 'Authorized Sevadars & Temple Admin only',
+    settingSevadar: 'Authorized Sevadar Portal',
+    settingSevadarSub: 'Temple Management & Dispatch Desk',
     viewBasket: 'View Cart',
     cartSheetTitle: 'Your Shopping Basket',
     shippingStateLabel: '📍 Select Delivery State (डाक/कोरियर राज्य):',
@@ -95,13 +101,9 @@ const i18n = {
     btnProceedPayment: 'Proceed to Secure Payment ➔',
     paymentModalHeading: 'Secure Seva Payment',
     payableAmountText: 'Payable Amount:',
-    btnConfirmPayment: 'Complete Payment',
     successDefaultHeading: 'Seva Booking Confirmed!',
     successDefaultMsg: 'Your offering has been registered with Shree Balaji Maharaj.',
-    refIdLabel: 'Reference ID:',
-    devoteeLabel: 'Devotee:',
-    statusLabel: 'Status:',
-    btnViewMySevas: 'View My Bookings / Sevas 📋',
+    btnViewMySevas: 'View My Sevas 📋',
     navHome: 'Home',
     navSawamani: 'Sawamani',
     navStore: 'Store',
@@ -121,6 +123,9 @@ const i18n = {
     sawamaniTitle: 'सवामणि सेवा',
     storeBadge: 'आधिकारिक भण्डार',
     storeTitle: 'दिव्य भण्डार',
+    quickTrackTitle: 'अपनी सेवा / ऑर्डर स्थिति ट्रैक करें',
+    quickTrackSub: 'अपना रेफरेंस आईडी दर्ज करें (उदा. SWM-1082 या ORD-5021)',
+    btnTrack: 'ट्रैक करें 🚚',
     darbarGuideTitle: 'दरबार नियम एवं साथ लाने योग्य सामग्री',
     darbarGuideSubtitle: 'दरबार में आने वाले सभी भक्तों हेतु आवश्यक दिशा-निर्देश',
     guide1Title: 'आधिकारिक रजिस्ट्रेशन लिंक:',
@@ -140,9 +145,10 @@ const i18n = {
     sawamaniCostLabel: 'सवामणि सेवा सहयोग राशि:',
     sawamaniFixedTag: 'निश्चित सेवा राशि (50 किलो शुद्ध देसी घी भोग)',
     sankalpFormTitle: 'भक्त सवामणि संकल्प फॉर्म',
-    sankalpFormSub: 'प्रसाद प्राप्ति हेतु कृपया चारों विवरण सही-सही भरें',
+    sankalpFormSub: 'प्रसाद प्राप्ति एवं डिजिटल रसीद हेतु कृपया सभी विवरण सही भरें',
     labelName: '1. भक्त का पूरा नाम *',
     labelPhone: '2. मोबाइल / व्हाट्सएप नंबर *',
+    labelEmail: 'ईमेल पता (डिजिटल रसीद हेतु)',
     labelAddress: '3. महाप्रसाद डिलीवरी का पूरा डाक पता *',
     labelReason: '4. सवामणि लगाने का कारण / संकल्प *',
     btnPaySawamani: 'सवामणि संकल्प करें एवं ₹11,000 भुगतान करें ➔',
@@ -153,7 +159,7 @@ const i18n = {
     storeDeliverySub: 'स्पीड पोस्ट / कोरियर द्वारा ट्रैकिंग सहित डिलीवरी',
     mySevasPill: '📋 सेवा इतिहास',
     mySevasHeading: 'मेरी सेवाएं एवं ऑर्डर्स',
-    mySevasSub: 'सवामणि भोग एवं सामग्री ऑर्डर्स स्थिति',
+    mySevasSub: 'लाइव ट्रैकिंग, डिजिटल रसीद एवं बुकिंग इतिहास',
     tabSawamani: '🍯 सवामणि भोग',
     tabStore: '📦 सामग्री ऑर्डर्स',
     devoteeGreeting: 'श्री बालाजी कृपा भक्त',
@@ -162,8 +168,8 @@ const i18n = {
     settingAbout: 'श्री बालाजी कृपा के बारे में',
     settingAboutSub: 'धाम इतिहास व उद्देश्य',
     settingHelp: 'हेल्पलाइन व व्हाट्सएप सहायता',
-    settingAdmin: 'प्रशासक पोर्टल (Admin Center)',
-    settingAdminSub: 'केवल अधिकृत सेवादारों हेतु',
+    settingSevadar: 'अधिकृत सेवादार पोर्टल',
+    settingSevadarSub: 'धाम प्रबंधन एवं प्रेषण डेस्क',
     viewBasket: 'टोकरी देखें',
     cartSheetTitle: 'आपकी सामग्री टोकरी',
     shippingStateLabel: '📍 डिलीवरी राज्य चुनें (डाक/कोरियर शुल्क हेतु):',
@@ -174,13 +180,9 @@ const i18n = {
     btnProceedPayment: 'सुरक्षित भुगतान करें ➔',
     paymentModalHeading: 'श्री बालाजी सेवा भुगतान',
     payableAmountText: 'कुल देय राशि:',
-    btnConfirmPayment: 'भुगतान पूरा करें',
     successDefaultHeading: 'सेवा संकल्प सफलतापूर्वक स्वीकृत!',
     successDefaultMsg: 'आपका संकल्प श्री बालाजी महाराज के चरणों में समर्पित हो गया है।',
-    refIdLabel: 'रेफरेंस आईडी:',
-    devoteeLabel: 'भक्त का नाम:',
-    statusLabel: 'स्थिति:',
-    btnViewMySevas: 'मेरी सेवाएं / बुकिंग्स देखें 📋',
+    btnViewMySevas: 'मेरी सेवाएं देखें 📋',
     navHome: 'होम',
     navSawamani: 'सवामणि',
     navStore: 'भण्डार',
@@ -189,7 +191,7 @@ const i18n = {
   }
 };
 
-// YouTube Database mapped to 4 Official Channels
+// YouTube Database mapped to the 4 Official Channels provided by user
 const ytDatabase = {
   main: [
     {
@@ -210,7 +212,7 @@ const ytDatabase = {
   vlogs: [
     {
       id: 'vid-vlog-1',
-      title: 'मेहंदीपुर बालाजी से सालासर धाम की दिव्य यात्रा Vlog | अलौकिक दर्शन',
+      title: 'Vanshu Dpk Vlogs | मेहंदीपुर बालाजी से सालासर धाम की दिव्य यात्रा Vlog',
       channelName: '@Balajikikripavlogs',
       channelUrl: 'https://www.youtube.com/@Balajikikripavlogs',
       embedId: 'dQw4w9WgXcQ'
@@ -277,18 +279,44 @@ const initialProducts = [
   }
 ];
 
-// Initial Demo Bookings
+// Initial Demo Bookings with Step Tracking & Tracking IDs
 const initialSawamani = [
   {
     id: 'SWM-1082',
     name: 'Sparsh Garg',
     phone: '+91 98765 43210',
+    email: 'sparsh@example.com',
     address: 'Sector 14, Urban Estate, Hisar, Haryana - 125001',
     reason: 'स्वास्थ्य लाभ एवं व्यापार में बाधा निवारण हेतु आभार',
     amount: 11000,
-    status: 'confirmed',
+    status: 'dispatched', // 'confirmed', 'prepared', 'dispatched', 'delivered'
+    trackingNumber: 'SP89210928IN',
+    courier: 'India Post Speed Post',
     time: 'Today, 09:30 AM'
   }
+];
+
+const initialOrders = [
+  {
+    id: 'ORD-4920',
+    name: 'Devotee Rajesh',
+    phone: '+91 99887 76655',
+    email: 'rajesh@example.com',
+    address: 'Rohini Sector 7, New Delhi - 110085',
+    items: [{ name: 'Divya Granth (श्री बालाजी कृपा दिव्य पुस्तक)', qty: 1, price: 250 }],
+    amount: 300,
+    shippingState: 'delhi_ncr',
+    status: 'dispatched',
+    trackingNumber: 'SP77492019IN',
+    courier: 'India Post Speed Post',
+    time: 'Yesterday, 04:15 PM'
+  }
+];
+
+const initialDarbarPasses = [
+  { id: 'DRB-101', name: 'Sparsh Garg', city: 'Hisar, Haryana', date: 'Upcoming Tuesday', status: 'CONFIRMED PASS' },
+  { id: 'DRB-102', name: 'Sunil Mittal', city: 'Jaipur, Rajasthan', date: 'Upcoming Tuesday', status: 'CONFIRMED PASS' },
+  { id: 'DRB-103', name: 'Pooja Aggarwal', city: 'Delhi / NCR', date: 'Upcoming Tuesday', status: 'CONFIRMED PASS' }
 ];
 
 // Initialize App
@@ -299,7 +327,15 @@ function initApp() {
   renderStoreTiles();
   renderBookings();
   applyLanguage(state.lang);
-  if (state.isAdmin) renderAdminDashboard();
+  
+  // Check URL Hash for admin route e.g. #admin
+  if (window.location.hash === '#admin') {
+    if (state.isAdmin) {
+      showAdminView();
+    } else {
+      document.getElementById('adminPasscodeModal').classList.remove('hidden');
+    }
+  }
 }
 
 // Load Storage
@@ -310,7 +346,7 @@ function loadStorage() {
   const savedAdmin = localStorage.getItem('bkk_is_admin');
   if (savedAdmin === 'true') state.isAdmin = true;
 
-  const savedSawamani = localStorage.getItem('bkk_sawamani_v4');
+  const savedSawamani = localStorage.getItem('bkk_sawamani_v5');
   if (savedSawamani) {
     try { state.sawamaniBookings = JSON.parse(savedSawamani); }
     catch { state.sawamaniBookings = [...initialSawamani]; }
@@ -318,7 +354,7 @@ function loadStorage() {
     state.sawamaniBookings = [...initialSawamani];
   }
 
-  const savedProducts = localStorage.getItem('bkk_products_v4');
+  const savedProducts = localStorage.getItem('bkk_products_v5');
   if (savedProducts) {
     try { state.products = JSON.parse(savedProducts); }
     catch { state.products = [...initialProducts]; }
@@ -326,10 +362,20 @@ function loadStorage() {
     state.products = [...initialProducts];
   }
 
-  const savedOrders = localStorage.getItem('bkk_orders_v4');
+  const savedOrders = localStorage.getItem('bkk_orders_v5');
   if (savedOrders) {
     try { state.storeOrders = JSON.parse(savedOrders); }
-    catch { state.storeOrders = []; }
+    catch { state.storeOrders = [...initialOrders]; }
+  } else {
+    state.storeOrders = [...initialOrders];
+  }
+
+  const savedPasses = localStorage.getItem('bkk_passes_v5');
+  if (savedPasses) {
+    try { state.darbarPasses = JSON.parse(savedPasses); }
+    catch { state.darbarPasses = [...initialDarbarPasses]; }
+  } else {
+    state.darbarPasses = [...initialDarbarPasses];
   }
 }
 
@@ -337,9 +383,10 @@ function loadStorage() {
 function saveStorage() {
   localStorage.setItem('bkk_lang', state.lang);
   localStorage.setItem('bkk_is_admin', state.isAdmin ? 'true' : 'false');
-  localStorage.setItem('bkk_sawamani_v4', JSON.stringify(state.sawamaniBookings));
-  localStorage.setItem('bkk_products_v4', JSON.stringify(state.products));
-  localStorage.setItem('bkk_orders_v4', JSON.stringify(state.storeOrders));
+  localStorage.setItem('bkk_sawamani_v5', JSON.stringify(state.sawamaniBookings));
+  localStorage.setItem('bkk_products_v5', JSON.stringify(state.products));
+  localStorage.setItem('bkk_orders_v5', JSON.stringify(state.storeOrders));
+  localStorage.setItem('bkk_passes_v5', JSON.stringify(state.darbarPasses));
 }
 
 // Setup Event Listeners
@@ -352,12 +399,36 @@ function setupEventListeners() {
     });
   });
 
+  // Brand Header Click
+  const brandHomeBtn = document.getElementById('brandHomeBtn');
+  if (brandHomeBtn) brandHomeBtn.addEventListener('click', () => switchNav('home'));
+
   // Quick Service Tiles on Home
   const quickSawamaniTile = document.getElementById('quickSawamaniTile');
   if (quickSawamaniTile) quickSawamaniTile.addEventListener('click', () => switchNav('sawamani'));
 
   const quickStoreTile = document.getElementById('quickStoreTile');
   if (quickStoreTile) quickStoreTile.addEventListener('click', () => switchNav('store'));
+
+  // Quick Tracking Search on Home
+  const quickTrackBtn = document.getElementById('quickTrackBtn');
+  if (quickTrackBtn) {
+    quickTrackBtn.addEventListener('click', () => {
+      const query = document.getElementById('quickTrackInput').value.trim().toUpperCase();
+      if (!query) {
+        showToast(state.lang === 'hi' ? 'कृपया रेफरेंस आईडी दर्ज करें' : 'Please enter Reference ID');
+        return;
+      }
+      openTrackingResultModal(query);
+    });
+  }
+
+  const closeTrackingModalBtn = document.getElementById('closeTrackingModalBtn');
+  if (closeTrackingModalBtn) {
+    closeTrackingModalBtn.addEventListener('click', () => {
+      document.getElementById('trackingResultModal').classList.add('hidden');
+    });
+  }
 
   // Language Switch Button in Header
   const langSwitchBtn = document.getElementById('langSwitchBtn');
@@ -400,11 +471,12 @@ function setupEventListeners() {
       e.preventDefault();
       const name = document.getElementById('sawamaniDevoteeName').value.trim();
       const phone = document.getElementById('sawamaniPhone').value.trim();
+      const email = document.getElementById('sawamaniEmail').value.trim();
       const address = document.getElementById('sawamaniAddress').value.trim();
       const reason = document.getElementById('sawamaniReason').value.trim();
 
       if (!name || !phone || !address || !reason) {
-        showToast(state.lang === 'hi' ? 'कृपया सभी 4 विवरण भरें!' : 'Please fill all 4 required fields!');
+        showToast(state.lang === 'hi' ? 'कृपया सभी आवश्यक विवरण भरें!' : 'Please fill all required fields!');
         return;
       }
 
@@ -414,6 +486,7 @@ function setupEventListeners() {
         amount: 11000,
         name,
         phone,
+        email: email || 'Not Provided',
         address,
         reason
       });
@@ -452,11 +525,16 @@ function setupEventListeners() {
   const proceedStoreCheckoutBtn = document.getElementById('proceedStoreCheckoutBtn');
   if (proceedStoreCheckoutBtn) {
     proceedStoreCheckoutBtn.addEventListener('click', () => {
+      const name = document.getElementById('cartDevoteeName').value.trim();
+      const phone = document.getElementById('cartDevoteePhone').value.trim();
+      const email = document.getElementById('cartDevoteeEmail').value.trim();
       const address = document.getElementById('cartAddressInput').value.trim();
-      if (!address) {
-        showToast(state.lang === 'hi' ? 'कृपया सामग्री डिलीवरी का पूरा पता लिखें!' : 'Please enter delivery address!');
+
+      if (!name || !phone || !address) {
+        showToast(state.lang === 'hi' ? 'कृपया नाम, मोबाइल व डिलीवरी पता भरें!' : 'Please fill Name, Phone and Address!');
         return;
       }
+
       cartDrawerBackdrop.classList.add('hidden');
 
       const itemsTotal = Object.values(state.cart).reduce((sum, item) => sum + (item.price * item.qty), 0);
@@ -468,6 +546,9 @@ function setupEventListeners() {
         amount: grandTotal,
         itemsTotal,
         shippingFee: state.shippingFee,
+        name,
+        phone,
+        email: email || 'Not Provided',
         address
       });
     });
@@ -483,15 +564,6 @@ function setupEventListeners() {
       paymentModalOverlay.classList.add('hidden');
     });
   }
-
-  document.querySelectorAll('input[name="payMethod"]').forEach(radio => {
-    radio.addEventListener('change', () => {
-      document.querySelectorAll('.pay-method-card').forEach(opt => opt.classList.remove('selected'));
-      radio.closest('.pay-method-card').classList.add('selected');
-      const qrBox = document.getElementById('qrBoxPreview');
-      if (qrBox) qrBox.classList.toggle('hidden', radio.value !== 'qr');
-    });
-  });
 
   if (confirmPaymentBtn) {
     confirmPaymentBtn.addEventListener('click', () => {
@@ -510,6 +582,14 @@ function setupEventListeners() {
     });
   }
 
+  // Print Receipt Button
+  const printReceiptBtn = document.getElementById('printReceiptBtn');
+  if (printReceiptBtn) {
+    printReceiptBtn.addEventListener('click', () => {
+      window.print();
+    });
+  }
+
   // Segmented Tabs in My Sevas
   document.querySelectorAll('.segmented-control .seg-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -522,19 +602,29 @@ function setupEventListeners() {
     });
   });
 
-  // Admin Passcode Modal
-  const openAdminModalBtn = document.getElementById('openAdminModalBtn');
+  // Dedicated Admin Login Door (Header & Profile)
+  const adminDoorBtn = document.getElementById('adminDoorBtn');
+  const profileSevadarPortalRow = document.getElementById('profileSevadarPortalRow');
   const adminPasscodeModal = document.getElementById('adminPasscodeModal');
   const closeAdminPasscodeBtn = document.getElementById('closeAdminPasscodeBtn');
   const adminPasscodeForm = document.getElementById('adminPasscodeForm');
-  const adminLogoutBtn = document.getElementById('adminLogoutBtn');
+  const adminFullLogoutBtn = document.getElementById('adminFullLogoutBtn');
+  const exitAdminBtn = document.getElementById('exitAdminBtn');
 
-  if (openAdminModalBtn) {
-    openAdminModalBtn.addEventListener('click', () => {
+  if (adminDoorBtn) {
+    adminDoorBtn.addEventListener('click', () => {
       if (state.isAdmin) {
-        showToast(state.lang === 'hi' ? '🛡️ प्रशासक पोर्टल नीचे सक्रिय है' : '🛡️ Admin Dashboard is already unlocked below');
-        const card = document.getElementById('adminDashboardCard');
-        if (card) card.scrollIntoView({ behavior: 'smooth' });
+        showAdminView();
+      } else {
+        adminPasscodeModal.classList.remove('hidden');
+      }
+    });
+  }
+
+  if (profileSevadarPortalRow) {
+    profileSevadarPortalRow.addEventListener('click', () => {
+      if (state.isAdmin) {
+        showAdminView();
       } else {
         adminPasscodeModal.classList.remove('hidden');
       }
@@ -555,25 +645,72 @@ function setupEventListeners() {
         state.isAdmin = true;
         saveStorage();
         adminPasscodeModal.classList.add('hidden');
-        renderAdminDashboard();
-        showToast(state.lang === 'hi' ? '🛡️ प्रशासक पोर्टल अनलॉक्ड' : '🛡️ Admin Portal Authenticated');
+        showAdminView();
+        showToast('🛡️ Welcome, Chief Sevadar! Admin Portal Unlocked.');
       } else {
         showToast(state.lang === 'hi' ? '❌ गलत पासकोड!' : '❌ Incorrect Passcode!');
       }
     });
   }
 
-  if (adminLogoutBtn) {
-    adminLogoutBtn.addEventListener('click', () => {
+  if (adminFullLogoutBtn) {
+    adminFullLogoutBtn.addEventListener('click', () => {
       state.isAdmin = false;
       saveStorage();
-      document.getElementById('adminDashboardCard').classList.add('hidden');
+      switchNav('home');
       showToast('Logged out of Admin Portal');
+    });
+  }
+
+  if (exitAdminBtn) {
+    exitAdminBtn.addEventListener('click', () => {
+      switchNav('home');
+    });
+  }
+
+  // Admin Sub-Tab Pills
+  document.querySelectorAll('.admin-tab-pills .admin-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.getAttribute('data-admintab');
+      switchAdminTab(tabId);
+    });
+  });
+
+  // Admin Add Product Button
+  const adminAddNewProdBtn = document.getElementById('adminAddNewProdBtn');
+  if (adminAddNewProdBtn) {
+    adminAddNewProdBtn.addEventListener('click', () => {
+      const name = prompt('Enter Product Name in English:');
+      if (!name) return;
+      const nameHi = prompt('Enter Product Name in Hindi:') || name;
+      const price = parseInt(prompt('Enter Unit Price (₹):') || '200');
+      const mrp = parseInt(prompt('Enter MRP (₹):') || '300');
+      const stock = parseInt(prompt('Enter Stock Quantity:') || '100');
+
+      const newProd = {
+        id: 'prod-' + Date.now(),
+        type: 'single',
+        name,
+        nameHi,
+        unitPrice: price,
+        mrp,
+        icon: '📦',
+        badge: 'NEW ITEM',
+        description: 'Sanctified temple offering item.',
+        descriptionHi: 'सिद्ध धाम प्रसादम सामग्री।',
+        stock
+      };
+
+      state.products.push(newProd);
+      saveStorage();
+      renderStoreTiles();
+      renderAdminProducts();
+      showToast('New Product added to Divya Store!');
     });
   }
 }
 
-// Switch Navigation View
+// Switch Devotee Views
 function switchNav(navName) {
   state.activeNav = navName;
   document.querySelectorAll('.view-panel').forEach(panel => panel.classList.remove('active'));
@@ -581,39 +718,63 @@ function switchNav(navName) {
     item.classList.toggle('active', item.getAttribute('data-nav') === navName);
   });
 
+  // Ensure main header & dock are visible in user views
+  document.getElementById('appMainHeader').classList.remove('hidden');
+  document.getElementById('appBottomDock').classList.remove('hidden');
+
   const target = document.getElementById(`${navName}Section`);
   if (target) target.classList.add('active');
 
-  // Handle Floating Cart Strip Visibility
   updateFloatingCart();
 
   if (navName === 'orders') renderBookings();
   if (navName === 'store') renderStoreTiles();
-  if (navName === 'profile' && state.isAdmin) renderAdminDashboard();
 }
+
+// Show Dedicated Admin Portal View
+function showAdminView() {
+  document.querySelectorAll('.view-panel').forEach(panel => panel.classList.remove('active'));
+  document.querySelectorAll('.bottom-dock .dock-item').forEach(item => item.classList.remove('active'));
+  
+  // Hide bottom dock in Admin portal for pure dashboard experience
+  document.getElementById('appBottomDock').classList.add('hidden');
+  
+  const adminSection = document.getElementById('adminSection');
+  if (adminSection) adminSection.classList.add('active');
+
+  renderAdminAll();
+}
+
+// Switch Admin Sub-Tabs
+window.switchAdminTab = function(tabId) {
+  state.activeAdminTab = tabId;
+  document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-admintab') === tabId);
+  });
+  document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.remove('active'));
+  const target = document.getElementById(tabId);
+  if (target) target.classList.add('active');
+};
 
 // Apply Language (100% Dual Translation)
 function applyLanguage(lang) {
   const dict = i18n[lang] || i18n.en;
   
-  // Translate all [data-key] elements
   document.querySelectorAll('[data-key]').forEach(el => {
     const key = el.getAttribute('data-key');
     if (dict[key]) el.textContent = dict[key];
   });
 
-  // Update Header Button Label
   const currentLangText = document.getElementById('currentLangText');
   if (currentLangText) currentLangText.textContent = lang === 'en' ? 'हिंदी' : 'English';
 
   const profileLangLabel = document.getElementById('profileLangLabel');
   if (profileLangLabel) profileLangLabel.textContent = lang === 'en' ? 'English (Switch to हिंदी)' : 'हिंदी (Switch to English)';
 
-  // Re-render Store Tiles with localized titles
   renderStoreTiles();
 }
 
-// Render YouTube Video Feeds
+// Render YouTube Video Feeds with direct official links
 function renderYtVideos() {
   const container = document.getElementById('ytVideosContainer');
   if (!container) return;
@@ -640,7 +801,7 @@ function renderYtVideos() {
   `).join('');
 }
 
-// Render 2-Column Blinkit/Amazon Style Store Product Tiles
+// Render 2-Column Store Product Tiles
 function renderStoreTiles() {
   const grid = document.getElementById('storeTilesGrid');
   if (!grid) return;
@@ -684,7 +845,6 @@ function renderStoreTiles() {
       const title = state.lang === 'hi' ? prod.nameHi : prod.name;
       const desc = state.lang === 'hi' ? prod.descriptionHi : prod.description;
 
-      // Selected batch size state or default 10
       const selectedSize = window[`selectedBatch_${prod.id}`] || 10;
       const currentBatch = prod.batches.find(b => b.size === selectedSize) || prod.batches[1];
       const batchKey = `${prod.id}_batch_${currentBatch.size}`;
@@ -700,7 +860,6 @@ function renderStoreTiles() {
             <h4 class="tile-product-title">${title}</h4>
             <p class="tile-product-desc">${desc}</p>
             
-            <!-- In-Tile Batch Selector -->
             <div class="tile-batch-select">
               <select onchange="changeBatchOption('${prod.id}', this.value)">
                 ${prod.batches.map(b => `
@@ -842,7 +1001,7 @@ function renderCartDrawer() {
   document.getElementById('billGrandTotalVal').textContent = `₹${grandTotal}`;
 }
 
-// Open Payment Gateway Modal
+// Open Real Direct UPI Intent & Payment Gateway Modal
 let currentPaymentData = null;
 function openPaymentModal(data) {
   currentPaymentData = data;
@@ -855,9 +1014,23 @@ function openPaymentModal(data) {
   const confirmBtnAmt = document.getElementById('confirmPayBtnAmt');
   if (confirmBtnAmt) confirmBtnAmt.textContent = `₹${data.amount.toLocaleString('en-IN')}`;
 
+  // Configure Real Direct UPI Deep Links (0% Fee)
+  const upiNote = encodeURIComponent(data.type === 'sawamani' ? 'Sawamani Seva Sankalp' : 'Divya Store Items');
+  const upiIntentUri = `upi://pay?pa=balajikripa@upi&pn=Shree%20Balaji%20Ki%20Kripa%20Trust&am=${data.amount}&cu=INR&tn=${upiNote}`;
+
+  const gpayLink = document.getElementById('gpayIntentLink');
+  const phonepeLink = document.getElementById('phonepeIntentLink');
+  const paytmLink = document.getElementById('paytmIntentLink');
+  const bhimLink = document.getElementById('bhimIntentLink');
+
+  if (gpayLink) gpayLink.href = upiIntentUri;
+  if (phonepeLink) phonepeLink.href = upiIntentUri;
+  if (paytmLink) paytmLink.href = upiIntentUri;
+  if (bhimLink) bhimLink.href = upiIntentUri;
+
   const qrImg = document.getElementById('qrImgSrc');
   if (qrImg) {
-    qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=balajikripa@upi&pn=Shree%20Balaji%20Ki%20Kripa%20Trust&am=${data.amount}&cu=INR`;
+    qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(upiIntentUri)}`;
   }
 
   const overlay = document.getElementById('paymentModalOverlay');
@@ -868,23 +1041,28 @@ function openPaymentModal(data) {
 function processPaymentCompletion() {
   if (!currentPaymentData) return;
 
+  const utr = document.getElementById('upiUtrInput') ? document.getElementById('upiUtrInput').value.trim() : '';
+
   if (currentPaymentData.type === 'sawamani') {
     const refId = 'SWM-' + Math.floor(1000 + Math.random() * 9000);
     const newBooking = {
       id: refId,
       name: currentPaymentData.name,
       phone: currentPaymentData.phone,
+      email: currentPaymentData.email || 'Not Provided',
       address: currentPaymentData.address,
       reason: currentPaymentData.reason,
       amount: 11000,
+      utr: utr || ('UPI-' + Math.floor(100000000000 + Math.random() * 900000000000)),
       status: 'confirmed',
+      trackingNumber: 'SP' + Math.floor(10000000 + Math.random() * 90000000) + 'IN',
+      courier: 'India Post Speed Post',
       time: 'Just now'
     };
 
     state.sawamaniBookings.unshift(newBooking);
     saveStorage();
 
-    // Reset Form
     document.getElementById('sawamaniSimpleForm').reset();
 
     showSuccessModal({
@@ -892,17 +1070,26 @@ function processPaymentCompletion() {
       message: state.lang === 'hi' ? '50 किलो शुद्ध देसी घी सवामणि भोग समर्पित किया जाएगा।' : '50 Kg pure desi ghee bhog will be offered at Balaji Dham.',
       refId: refId,
       name: currentPaymentData.name,
-      status: 'PAID ₹11,000 ✅'
+      phone: currentPaymentData.phone,
+      email: currentPaymentData.email,
+      address: currentPaymentData.address,
+      amount: 11000
     });
   } else if (currentPaymentData.type === 'store') {
     const orderId = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
     const newOrder = {
       id: orderId,
+      name: currentPaymentData.name,
+      phone: currentPaymentData.phone,
+      email: currentPaymentData.email || 'Not Provided',
       items: Object.values(state.cart),
       amount: currentPaymentData.amount,
       shippingState: state.shippingState,
       address: currentPaymentData.address,
-      status: 'dispatched',
+      utr: utr || ('UPI-' + Math.floor(100000000000 + Math.random() * 900000000000)),
+      status: 'confirmed',
+      trackingNumber: 'SP' + Math.floor(10000000 + Math.random() * 90000000) + 'IN',
+      courier: 'India Post Speed Post',
       time: 'Just now'
     };
 
@@ -915,93 +1102,371 @@ function processPaymentCompletion() {
       heading: state.lang === 'hi' ? '📦 सामग्री ऑर्डर स्वीकृत!' : '📦 Store Order Placed!',
       message: state.lang === 'hi' ? 'आपकी सामग्री स्पीड पोस्ट द्वारा प्रेषित की जा रही है।' : 'Your items are being dispatched via Speed Post.',
       refId: orderId,
-      name: 'Shree Balaji Devotee',
-      status: 'DISPATCHING 🚚'
+      name: currentPaymentData.name,
+      phone: currentPaymentData.phone,
+      email: currentPaymentData.email,
+      address: currentPaymentData.address,
+      amount: currentPaymentData.amount
     });
   }
 
   currentPaymentData = null;
 }
 
-// Show Success Confirmation Modal
-function showSuccessModal({ heading, message, refId, name, status }) {
+// Show Success Confirmation Modal with Printable Digital Receipt
+function showSuccessModal({ heading, message, refId, name, phone, email, address, amount }) {
   document.getElementById('successHeading').textContent = heading;
   document.getElementById('successMessage').textContent = message;
   document.getElementById('successRefVal').textContent = `#${refId}`;
+  document.getElementById('successTimeVal').textContent = new Date().toLocaleDateString('en-IN') + ', ' + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
   document.getElementById('successDevoteeVal').textContent = name;
+  document.getElementById('successPhoneVal').textContent = phone;
+  document.getElementById('successEmailVal').textContent = email || 'devotee@temple.com';
+  document.getElementById('successAddressVal').textContent = address;
+  document.getElementById('successAmountVal').textContent = `₹${amount.toLocaleString('en-IN')}`;
+
   document.getElementById('successModalOverlay').classList.remove('hidden');
+
+  // Trigger Mock Email Notification Dispatch Alert
+  if (email && email !== 'Not Provided') {
+    showToast(`✉️ Official Receipt emailed to ${email}`);
+  }
 }
 
-// Render Bookings & Sevas View
+// Render Bookings & Live Step Trackers in My Sevas
 function renderBookings() {
-  // Sawamani Bookings
+  // 1. Sawamani Bookings
   const sawamaniList = document.getElementById('sawamaniRecordsList');
   if (sawamaniList) {
     if (state.sawamaniBookings.length === 0) {
       sawamaniList.innerHTML = `<p style="text-align:center; padding:20px; color:var(--text-muted);">${state.lang === 'hi' ? 'कोई सवामणि बुकिंग नहीं है' : 'No Sawamani bookings yet'}</p>`;
     } else {
-      sawamaniList.innerHTML = state.sawamaniBookings.map(s => `
-        <div class="record-tile">
-          <div class="record-head">
-            <span class="record-id">🍯 #${s.id}</span>
-            <span class="record-badge-green">₹11,000 PAID ✅</span>
+      sawamaniList.innerHTML = state.sawamaniBookings.map(s => {
+        const step1Class = 'step-done';
+        const step2Class = (s.status === 'prepared' || s.status === 'dispatched' || s.status === 'delivered') ? 'step-done' : 'step-active';
+        const step3Class = (s.status === 'dispatched' || s.status === 'delivered') ? 'step-done' : (s.status === 'prepared' ? 'step-active' : '');
+        const step4Class = (s.status === 'delivered') ? 'step-done' : '';
+
+        return `
+          <div class="record-tile">
+            <div class="record-head">
+              <span class="record-id">🍯 #${s.id}</span>
+              <span class="record-badge-green">₹11,000 PAID ✅</span>
+            </div>
+            
+            <div class="record-body">
+              <div><strong>${state.lang === 'hi' ? 'भक्त' : 'Devotee'}:</strong> ${s.name} (${s.phone})</div>
+              <div><strong>${state.lang === 'hi' ? 'संकल्प' : 'Sankalp'}:</strong> ${s.reason}</div>
+              <div><strong>${state.lang === 'hi' ? 'प्रसाद पता' : 'Delivery Address'}:</strong> ${s.address}</div>
+            </div>
+
+            <!-- Visual 4-Step Progress Tracker -->
+            <div class="step-tracker">
+              <div class="step-item ${step1Class}">
+                <div class="step-dot">✓</div>
+                <span class="step-text">Sankalp Placed</span>
+              </div>
+              <div class="step-item ${step2Class}">
+                <div class="step-dot">🍯</div>
+                <span class="step-text">Bhog Offered</span>
+              </div>
+              <div class="step-item ${step3Class}">
+                <div class="step-dot">🚚</div>
+                <span class="step-text">Prasad Sent</span>
+              </div>
+              <div class="step-item ${step4Class}">
+                <div class="step-dot">🏠</div>
+                <span class="step-text">Delivered</span>
+              </div>
+            </div>
+
+            <div class="record-footer-actions">
+              <span class="tracking-num-tag">${s.courier || 'Speed Post'}: ${s.trackingNumber || 'SP1092892IN'}</span>
+              <button class="modern-btn btn-secondary btn-sm" style="color:var(--text-main); background:#f1f5f9;" onclick="openTrackingResultModal('${s.id}')">Live Track ➔</button>
+            </div>
           </div>
-          <div class="record-body">
-            <div><strong>${state.lang === 'hi' ? 'भक्त' : 'Devotee'}:</strong> ${s.name} (${s.phone})</div>
-            <div><strong>${state.lang === 'hi' ? 'संकल्प' : 'Sankalp'}:</strong> ${s.reason}</div>
-            <div><strong>${state.lang === 'hi' ? 'प्रसाद पता' : 'Delivery Address'}:</strong> ${s.address}</div>
-          </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
   }
 
-  // Store Orders
+  // 2. Store Orders
   const storeList = document.getElementById('storeRecordsList');
   if (storeList) {
     if (state.storeOrders.length === 0) {
       storeList.innerHTML = `<p style="text-align:center; padding:20px; color:var(--text-muted);">${state.lang === 'hi' ? 'कोई सामग्री ऑर्डर नहीं है' : 'No store orders yet'}</p>`;
     } else {
-      storeList.innerHTML = state.storeOrders.map(o => `
-        <div class="record-tile">
-          <div class="record-head">
-            <span class="record-id">📦 #${o.id}</span>
-            <span class="record-badge-green">DISPATCHED 🚚</span>
+      storeList.innerHTML = state.storeOrders.map(o => {
+        const step1Class = 'step-done';
+        const step2Class = (o.status === 'dispatched' || o.status === 'delivered') ? 'step-done' : 'step-active';
+        const step3Class = (o.status === 'dispatched' || o.status === 'delivered') ? 'step-done' : '';
+        const step4Class = (o.status === 'delivered') ? 'step-done' : '';
+
+        return `
+          <div class="record-tile">
+            <div class="record-head">
+              <span class="record-id">📦 #${o.id}</span>
+              <span class="record-badge-green">DISPATCHED 🚚</span>
+            </div>
+            
+            <div class="record-body">
+              <div><strong>Devotee:</strong> ${o.name || 'Shree Balaji Devotee'} (${o.phone || '+91 98765 43210'})</div>
+              <div>${o.items.map(i => `• ${i.name} (x${i.qty})`).join('<br>')}</div>
+              <div style="margin-top:4px; font-weight:800; color:var(--primary);">${state.lang === 'hi' ? 'कुल भुगतान' : 'Total Paid'}: ₹${o.amount}</div>
+            </div>
+
+            <div class="step-tracker">
+              <div class="step-item ${step1Class}">
+                <div class="step-dot">✓</div>
+                <span class="step-text">Confirmed</span>
+              </div>
+              <div class="step-item ${step2Class}">
+                <div class="step-dot">📦</div>
+                <span class="step-text">Packing</span>
+              </div>
+              <div class="step-item ${step3Class}">
+                <div class="step-dot">🚚</div>
+                <span class="step-text">Shipped</span>
+              </div>
+              <div class="step-item ${step4Class}">
+                <div class="step-dot">🏠</div>
+                <span class="step-text">Delivered</span>
+              </div>
+            </div>
+
+            <div class="record-footer-actions">
+              <span class="tracking-num-tag">${o.courier || 'Speed Post'}: ${o.trackingNumber || 'SP9981290IN'}</span>
+              <button class="modern-btn btn-secondary btn-sm" style="color:var(--text-main); background:#f1f5f9;" onclick="openTrackingResultModal('${o.id}')">Live Track ➔</button>
+            </div>
           </div>
-          <div class="record-body">
-            <div>${o.items.map(i => `• ${i.name} (x${i.qty})`).join('<br>')}</div>
-            <div style="margin-top:4px; font-weight:800; color:var(--primary);">${state.lang === 'hi' ? 'कुल भुगतान' : 'Total Paid'}: ₹${o.amount}</div>
-          </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
   }
 }
 
-// Render Admin Command Center
-function renderAdminDashboard() {
-  const card = document.getElementById('adminDashboardCard');
-  if (!card) return;
-  card.classList.remove('hidden');
+// Open Live Tracking Result Modal
+window.openTrackingResultModal = function(id) {
+  const item = state.sawamaniBookings.find(s => s.id === id) || state.storeOrders.find(o => o.id === id);
+  const container = document.getElementById('trackingModalBody');
+  if (!container) return;
 
-  const totalSawamani = state.sawamaniBookings.length * 11000;
-  document.getElementById('adminMetricSawamani').textContent = `₹${totalSawamani.toLocaleString('en-IN')}`;
-  document.getElementById('adminMetricOrders').textContent = state.storeOrders.length;
-  document.getElementById('adminMetricDevotees').textContent = state.sawamaniBookings.length;
+  if (!item) {
+    container.innerHTML = `
+      <div style="text-align:center; padding:20px;">
+        <p style="color:var(--danger); font-weight:700;">❌ No active records found for ID: ${id}</p>
+        <p style="font-size:11px; color:var(--text-muted); margin-top:4px;">Please verify your Reference ID (e.g. SWM-1082 or ORD-4920)</p>
+      </div>
+    `;
+  } else {
+    const isSawamani = id.startsWith('SWM');
+    container.innerHTML = `
+      <div class="printable-receipt-card">
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <strong>#${item.id}</strong>
+          <span class="record-badge-green">PAID ₹${item.amount} ✅</span>
+        </div>
+        <p style="font-size:11px;"><strong>Devotee:</strong> ${item.name} (${item.phone})</p>
+        <p style="font-size:11px;"><strong>Address:</strong> ${item.address}</p>
+        <div class="receipt-divider"></div>
+        <p style="font-size:11px; color:#1e3a8a;"><strong>Carrier:</strong> ${item.courier || 'India Post Speed Post'}</p>
+        <p style="font-size:11px; color:#1e3a8a;"><strong>Tracking Code:</strong> <span style="background:#dbeafe; padding:1px 6px; border-radius:4px; font-weight:800;">${item.trackingNumber || 'SP1088492IN'}</span></p>
+        
+        <div class="step-tracker" style="margin-top:14px;">
+          <div class="step-item step-done">
+            <div class="step-dot">✓</div>
+            <span class="step-text">${isSawamani ? 'Sankalp' : 'Ordered'}</span>
+          </div>
+          <div class="step-item step-done">
+            <div class="step-dot">${isSawamani ? '🍯' : '📦'}</div>
+            <span class="step-text">${isSawamani ? 'Bhog' : 'Packed'}</span>
+          </div>
+          <div class="step-item step-done">
+            <div class="step-dot">🚚</div>
+            <span class="step-text">In Transit</span>
+          </div>
+          <div class="step-item">
+            <div class="step-dot">🏠</div>
+            <span class="step-text">Delivered</span>
+          </div>
+        </div>
 
-  const tbody = document.getElementById('adminSawamaniTbody');
-  if (tbody) {
-    tbody.innerHTML = state.sawamaniBookings.map(s => `
-      <tr>
-        <td><strong>${s.name}</strong></td>
-        <td>${s.phone}</td>
-        <td>${s.reason.substring(0, 30)}...</td>
-        <td>${s.address.substring(0, 25)}...</td>
-        <td><strong>₹11,000</strong></td>
-      </tr>
-    `).join('');
+        <div style="text-align:center; margin-top:12px;">
+          <a href="https://www.indiapost.gov.in/_layouts/15/dop.portal.tracking/trackconsignment.aspx" target="_blank" class="modern-btn btn-primary btn-sm">
+            Check on India Post Portal ↗
+          </a>
+        </div>
+      </div>
+    `;
   }
+
+  document.getElementById('trackingResultModal').classList.remove('hidden');
+};
+
+// Render All Admin Sections
+function renderAdminAll() {
+  // Counts & Overview
+  const totalSawamaniAmt = state.sawamaniBookings.length * 11000;
+  const totalStoreAmt = state.storeOrders.reduce((sum, o) => sum + o.amount, 0);
+
+  document.getElementById('adminCountSawamani').textContent = state.sawamaniBookings.length;
+  document.getElementById('adminCountOrders').textContent = state.storeOrders.length;
+  document.getElementById('adminSawamaniBadgeCount').textContent = `${state.sawamaniBookings.length} Bookings`;
+  document.getElementById('adminOrdersBadgeCount').textContent = `${state.storeOrders.length} Orders`;
+
+  document.getElementById('adminOverviewSawamaniAmt').textContent = `₹${totalSawamaniAmt.toLocaleString('en-IN')}`;
+  document.getElementById('adminOverviewSawamaniCount').textContent = `${state.sawamaniBookings.length} Bookings`;
+  document.getElementById('adminOverviewStoreAmt').textContent = `₹${totalStoreAmt.toLocaleString('en-IN')}`;
+  document.getElementById('adminOverviewStoreCount').textContent = `${state.storeOrders.length} Orders`;
+  document.getElementById('adminOverviewDevoteesCount').textContent = state.sawamaniBookings.length + state.storeOrders.length;
+
+  renderAdminSawamani();
+  renderAdminOrders();
+  renderAdminProducts();
+  renderAdminDarbar();
 }
+
+function renderAdminSawamani() {
+  const tbody = document.getElementById('adminSawamaniFullTbody');
+  if (!tbody) return;
+
+  tbody.innerHTML = state.sawamaniBookings.map(s => `
+    <tr>
+      <td><strong>${s.id}</strong></td>
+      <td>${s.name}</td>
+      <td>${s.phone}</td>
+      <td>${s.reason.substring(0, 25)}...</td>
+      <td>${s.address.substring(0, 20)}...</td>
+      <td>
+        <select onchange="updateSawamaniStatus('${s.id}', this.value)" style="font-size:9px; padding:2px; border-radius:4px;">
+          <option value="confirmed" ${s.status === 'confirmed' ? 'selected' : ''}>Confirmed</option>
+          <option value="prepared" ${s.status === 'prepared' ? 'selected' : ''}>Bhog Offered</option>
+          <option value="dispatched" ${s.status === 'dispatched' ? 'selected' : ''}>Dispatched</option>
+          <option value="delivered" ${s.status === 'delivered' ? 'selected' : ''}>Delivered</option>
+        </select>
+      </td>
+      <td>
+        <button class="modern-btn btn-sm btn-primary" onclick="adminAssignTracking('${s.id}', 'sawamani')">Set Track #</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function renderAdminOrders() {
+  const tbody = document.getElementById('adminOrdersFullTbody');
+  if (!tbody) return;
+
+  tbody.innerHTML = state.storeOrders.map(o => `
+    <tr>
+      <td><strong>${o.id}</strong></td>
+      <td>${o.items.map(i => `${i.name} (x${i.qty})`).join(', ')}</td>
+      <td><strong>₹${o.amount}</strong></td>
+      <td>${o.address.substring(0, 20)}...</td>
+      <td><span style="background:#e0f2fe; padding:1px 4px; border-radius:3px;">${o.trackingNumber || 'SP108249IN'}</span></td>
+      <td>
+        <select onchange="updateStoreOrderStatus('${o.id}', this.value)" style="font-size:9px; padding:2px; border-radius:4px;">
+          <option value="confirmed" ${o.status === 'confirmed' ? 'selected' : ''}>Confirmed</option>
+          <option value="dispatched" ${o.status === 'dispatched' ? 'selected' : ''}>Dispatched</option>
+          <option value="delivered" ${o.status === 'delivered' ? 'selected' : ''}>Delivered</option>
+        </select>
+      </td>
+      <td>
+        <button class="modern-btn btn-sm btn-primary" onclick="adminAssignTracking('${o.id}', 'store')">Set Track #</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function renderAdminProducts() {
+  const list = document.getElementById('adminInventoryList');
+  if (!list) return;
+
+  list.innerHTML = state.products.map(p => `
+    <div style="background:#f8fafc; border:1px solid var(--border-subtle); border-radius:8px; padding:8px 10px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <strong style="font-size:11px;">${p.name}</strong>
+        <p style="font-size:10px; color:var(--text-muted);">Stock: <strong>${p.stock}</strong> units | Price: <strong>₹${p.unitPrice || 'Batch Pricing'}</strong></p>
+      </div>
+      <div style="display:flex; gap:4px;">
+        <button class="modern-btn btn-sm btn-secondary" style="color:var(--text-main); background:#ffffff;" onclick="adminEditStock('${p.id}')">Edit Stock</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderAdminDarbar() {
+  const tbody = document.getElementById('adminDarbarTbody');
+  if (!tbody) return;
+
+  tbody.innerHTML = state.darbarPasses.map(d => `
+    <tr>
+      <td><strong>${d.id}</strong></td>
+      <td>${d.name}</td>
+      <td>${d.city}</td>
+      <td>${d.date}</td>
+      <td><span class="record-badge-green">${d.status}</span></td>
+    </tr>
+  `).join('');
+}
+
+window.updateSawamaniStatus = function(id, newStatus) {
+  const booking = state.sawamaniBookings.find(s => s.id === id);
+  if (booking) {
+    booking.status = newStatus;
+    saveStorage();
+    renderBookings();
+    showToast(`Sawamani #${id} status updated to: ${newStatus}`);
+  }
+};
+
+window.updateStoreOrderStatus = function(id, newStatus) {
+  const order = state.storeOrders.find(o => o.id === id);
+  if (order) {
+    order.status = newStatus;
+    saveStorage();
+    renderBookings();
+    showToast(`Order #${id} status updated to: ${newStatus}`);
+  }
+};
+
+window.adminAssignTracking = function(id, type) {
+  const newTrack = prompt('Enter Speed Post / Courier Tracking Code:', 'SP' + Math.floor(10000000 + Math.random() * 90000000) + 'IN');
+  if (!newTrack) return;
+
+  if (type === 'sawamani') {
+    const item = state.sawamaniBookings.find(s => s.id === id);
+    if (item) {
+      item.trackingNumber = newTrack;
+      item.status = 'dispatched';
+      saveStorage();
+      renderAdminSawamani();
+      renderBookings();
+      showToast(`Tracking #${newTrack} assigned to Sawamani #${id}`);
+    }
+  } else {
+    const item = state.storeOrders.find(o => o.id === id);
+    if (item) {
+      item.trackingNumber = newTrack;
+      item.status = 'dispatched';
+      saveStorage();
+      renderAdminOrders();
+      renderBookings();
+      showToast(`Tracking #${newTrack} assigned to Order #${id}`);
+    }
+  }
+};
+
+window.adminEditStock = function(prodId) {
+  const p = state.products.find(x => x.id === prodId);
+  if (!p) return;
+  const newStock = prompt(`Update stock count for ${p.name}:`, p.stock);
+  if (newStock !== null) {
+    p.stock = parseInt(newStock) || 0;
+    saveStorage();
+    renderAdminProducts();
+    showToast('Stock quantity updated!');
+  }
+};
 
 // Toast Helper
 function showToast(msg) {
