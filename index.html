@@ -124,20 +124,25 @@
           </div>
         </div>
 
-        <!-- Order & Seva Quick Tracker Search Bar -->
+        <!-- Order & Seva Quick Tracker Search Bar (2026 Sleek UI) -->
         <div class="modern-card track-search-card">
           <div class="track-header">
-            <span class="track-icon">🔍</span>
+            <span class="track-icon">🚚</span>
             <div>
               <h4 data-key="quickTrackTitle">Track Your Seva / Order Status</h4>
-              <p data-key="quickTrackSub">Enter your Reference ID (e.g. SWM-1082 or ORD-5021)</p>
+              <p data-key="quickTrackSub">Live Speed Post updates & dispatch status</p>
             </div>
           </div>
           <div class="track-input-group">
-            <input type="text" id="quickTrackInput" placeholder="Enter Ref ID (#SWM-... / #ORD-...)">
-            <button class="modern-btn btn-primary" id="quickTrackBtn">
-              <span data-key="btnTrack">Track 🚚</span>
+            <input type="text" id="quickTrackInput" placeholder="Enter Ref ID (e.g. SWM-1082 or ORD-4920)" autocomplete="off">
+            <button class="modern-btn btn-primary btn-track-cta" id="quickTrackBtn">
+              <span data-key="btnTrack">Track ➔</span>
             </button>
+          </div>
+          <div class="quick-track-chips">
+            <span class="chip-hint">Try Demo:</span>
+            <button type="button" class="sample-track-pill" onclick="document.getElementById('quickTrackInput').value='SWM-1082'; document.getElementById('quickTrackBtn').click();">🍯 SWM-1082</button>
+            <button type="button" class="sample-track-pill" onclick="document.getElementById('quickTrackInput').value='ORD-4920'; document.getElementById('quickTrackBtn').click();">📦 ORD-4920</button>
           </div>
         </div>
 
@@ -206,76 +211,190 @@
 
       </section>
 
-      <!-- ================= VIEW 2: SAWAMANI SEVA (4 FIELDS ONLY + EMAIL FOR RECEIPT) ================= -->
+      <!-- ================= VIEW 2: SAWAMANI SEVA (2026 LUXURY ULTRA-MODERN FORM) ================= -->
       <section id="sawamaniSection" class="view-panel">
         
-        <!-- Header Banner -->
-        <div class="page-top-banner">
-          <span class="pill-tag" data-key="sawamaniPill">🍯 SHREE BALAJI SEVA</span>
+        <!-- Luxury Divine Top Banner -->
+        <div class="page-top-banner luxury-banner">
+          <div class="banner-badge-row">
+            <span class="pill-tag luxury-pill" data-key="sawamaniPill">🍯 श्री बालाजी महाभोग सेवा</span>
+            <span class="badge-seal-gold">✨ 50 KG PURE DESI GHEE</span>
+          </div>
           <h2 data-key="sawamaniPageTitle">Sawamani Bhog Seva</h2>
-          <p data-key="sawamaniPageSubtitle">50 Kilograms (1.25 Maund) Pure Desi Ghee Besan Ladoo Bhog</p>
+          <p data-key="sawamaniPageSubtitle">50 Kilograms (1.25 Maund) Sacred Besan Ladoo Mahabhog Offering</p>
         </div>
 
-        <!-- Significance Card -->
+        <!-- 🌟 LIVE ROYAL SANKALP PATRA PREVIEW (2026 GOLD FOIL CARD) -->
+        <div class="royal-sankalp-patra">
+          <div class="patra-watermark">🕉️</div>
+          <div class="patra-header">
+            <div class="patra-brand">
+              <span class="patra-om">🚩</span>
+              <div>
+                <h4 class="patra-title">श्री संकटमोचन बालाजी संकल्प पत्र</h4>
+                <span class="patra-subtitle">Shree Balaji Ki Kripa Dham • Official Seva Sankalp</span>
+              </div>
+            </div>
+            <div class="patra-seal">
+              <span>50 KG</span>
+              <strong>BHOG</strong>
+            </div>
+          </div>
+
+          <div class="patra-body-grid">
+            <div class="patra-item">
+              <span class="patra-label">भक्त का नाम (Devotee):</span>
+              <strong class="patra-val text-gold" id="livePreviewName">श्री / श्रीमती भक्त नाम</strong>
+            </div>
+            <div class="patra-item">
+              <span class="patra-label">मोबाइल / संपर्क:</span>
+              <span class="patra-val" id="livePreviewPhone">+91 XXXXX XXXXX</span>
+            </div>
+            <div class="patra-item full-span">
+              <span class="patra-label">संकल्प एवं मनोकामना (Sankalp Intention):</span>
+              <span class="patra-val patra-reason-text" id="livePreviewReason">स्वास्थ्य लाभ, संकट निवारण एवं परिवार में सुख-शांति हेतु...</span>
+            </div>
+            <div class="patra-item full-span">
+              <span class="patra-label">महाप्रसाद प्रेषण पता (Delivery Postal Address):</span>
+              <span class="patra-val patra-address-text" id="livePreviewAddress">धाम द्वारा आपके निवास स्थान पर स्पीड पोस्ट से प्रेषित</span>
+            </div>
+          </div>
+
+          <div class="patra-footer">
+            <span class="patra-status">🔒 LIVE SANKALP PREVIEW</span>
+            <span class="patra-amount">₹11,000 FIXED SEVA</span>
+          </div>
+        </div>
+
+        <!-- Significance Accordion / Info Card -->
         <div class="modern-card info-card-amber">
-          <h3 data-key="whySawamaniTitle">Why is Sawamani Offered? (महत्व)</h3>
-          <p data-key="whySawamaniDesc">
-            Sawamani is the sacred offering of 50 kg pure desi ghee besan ladoos at the lotus feet of Shree Balaji Maharaj. Devotees offer Sawamani for wish fulfillment, protection from obstacles, recovery from health issues, and express gratitude upon prayer fulfillment. The sanctified Mahaprasad is distributed among thousands of pilgrims and also dispatched to your postal address.
-          </p>
-        </div>
-
-        <!-- Fixed Price Card -->
-        <div class="price-highlight-card">
-          <div class="price-left">
-            <span class="price-label" data-key="sawamaniCostLabel">Sawamani Seva Amount:</span>
-            <div class="price-number">₹11,000</div>
-            <span class="price-subtext" data-key="sawamaniFixedTag">Fixed Seva Amount (50 Kg Pure Desi Ghee Bhog)</span>
-          </div>
-          <div class="pure-seal">
-            <span>100% PURE</span>
-            <strong>DESI GHEE</strong>
+          <div class="significance-header">
+            <span class="significance-icon">📜</span>
+            <div>
+              <h3 data-key="whySawamaniTitle">Why is Sawamani Offered? (सवामणि महत्व)</h3>
+              <p data-key="whySawamaniDesc">
+                Sawamani is the sacred offering of 50 kg pure desi ghee besan ladoos at the lotus feet of Shree Balaji Maharaj. Devotees offer Sawamani for wish fulfillment, recovery from critical illness, and gratitude. The blessed Mahaprasad is distributed among pilgrims and delivered to your home.
+              </p>
+            </div>
           </div>
         </div>
 
-        <!-- 4-FIELD SIMPLE SAWAMANI SANKALP FORM -->
-        <div class="modern-card">
-          <h3 class="form-title" data-key="sankalpFormTitle">Devotee Sankalp Form</h3>
-          <p class="form-sub" data-key="sankalpFormSub">Please fill all details accurately for Mahaprasad dispatch and email receipt</p>
+        <!-- 🌟 2026 ULTRA-MODERN 4-FIELD FORM WITH PRESETS -->
+        <div class="modern-form-wrapper">
+          <div class="form-section-header">
+            <span class="section-number-pill">STEP 1 OF 2</span>
+            <h3 class="form-title" data-key="sankalpFormTitle">Fill Devotee Sankalp Details</h3>
+            <p class="form-sub" data-key="sankalpFormSub">All details are recorded directly in the official temple sankalp register</p>
+          </div>
 
-          <form id="sawamaniSimpleForm" class="clean-form">
+          <form id="sawamaniSimpleForm" class="modern-luxury-form">
             
-            <!-- Field 1: Devotee Name -->
-            <div class="form-group">
-              <label for="sawamaniDevoteeName" data-key="labelName">1. Devotee Full Name (भक्त का पूरा नाम) *</label>
-              <input type="text" id="sawamaniDevoteeName" required placeholder="e.g. Ramesh Sharma / राजेश शर्मा">
+            <!-- Field Card 1: Devotee Name -->
+            <div class="form-field-card">
+              <div class="field-card-top">
+                <span class="field-icon-box icon-orange">👤</span>
+                <div class="field-label-wrap">
+                  <label for="sawamaniDevoteeName" data-key="labelName">1. Devotee Full Name (भक्त का पूरा नाम) *</label>
+                  <span class="field-helper-hint">Name on whose behalf the Sankalp Arji is placed</span>
+                </div>
+              </div>
+              <div class="field-input-box">
+                <input type="text" id="sawamaniDevoteeName" required placeholder="e.g. Ramesh Sharma / राजेश शर्मा" autocomplete="name">
+              </div>
             </div>
 
-            <!-- Field 2: Phone / WhatsApp Number -->
-            <div class="form-group">
-              <label for="sawamaniPhone" data-key="labelPhone">2. Mobile / WhatsApp Number (मोबाइल नंबर) *</label>
-              <input type="tel" id="sawamaniPhone" required placeholder="e.g. +91 98765 43210">
+            <!-- Field Card 2: Phone Number -->
+            <div class="form-field-card">
+              <div class="field-card-top">
+                <span class="field-icon-box icon-green">📱</span>
+                <div class="field-label-wrap">
+                  <label for="sawamaniPhone" data-key="labelPhone">2. Mobile / WhatsApp Number (मोबाइल नंबर) *</label>
+                  <span class="field-helper-hint">For dispatch SMS & WhatsApp tracking updates</span>
+                </div>
+              </div>
+              <div class="field-input-box with-prefix">
+                <span class="phone-prefix-badge">🇮🇳 +91</span>
+                <input type="tel" id="sawamaniPhone" required placeholder="98765 43210" pattern="[0-9]{10}" maxlength="10" autocomplete="tel">
+              </div>
             </div>
 
-            <!-- Optional Email for Direct Receipt PDF -->
-            <div class="form-group">
-              <label for="sawamaniEmail" data-key="labelEmail">Email Address for Digital Receipt (ईमेल पता - रसीद हेतु)</label>
-              <input type="email" id="sawamaniEmail" placeholder="e.g. devotee@gmail.com">
+            <!-- Field Card 3: Email Address (Optional for PDF Receipt) -->
+            <div class="form-field-card">
+              <div class="field-card-top">
+                <span class="field-icon-box icon-blue">✉️</span>
+                <div class="field-label-wrap">
+                  <label for="sawamaniEmail" data-key="labelEmail">Email Address (ईमेल पता - रसीद हेतु)</label>
+                  <span class="field-helper-hint">Optional • Official Digital Receipt PDF sent instantly</span>
+                </div>
+              </div>
+              <div class="field-input-box">
+                <input type="email" id="sawamaniEmail" placeholder="e.g. devotee@gmail.com" autocomplete="email">
+              </div>
             </div>
 
-            <!-- Field 3: Full Postal Address -->
-            <div class="form-group">
-              <label for="sawamaniAddress" data-key="labelAddress">3. Complete Postal Address for Prasad Delivery (प्रसाद डिलीवरी का पूरा पता) *</label>
-              <textarea id="sawamaniAddress" rows="3" required placeholder="House/Flat No, Landmark, City, District, State, PIN Code"></textarea>
+            <!-- Field Card 4: Postal Delivery Address -->
+            <div class="form-field-card">
+              <div class="field-card-top">
+                <span class="field-icon-box icon-red">📍</span>
+                <div class="field-label-wrap">
+                  <label for="sawamaniAddress" data-key="labelAddress">3. Complete Postal Delivery Address (प्रसाद प्राप्ति पता) *</label>
+                  <span class="field-helper-hint">Speed Post Mahaprasad parcel will be delivered here</span>
+                </div>
+              </div>
+              <div class="field-input-box">
+                <textarea id="sawamaniAddress" rows="3" required placeholder="House/Flat No., Street/Landmark, City, District, State, PIN Code" autocomplete="street-address"></textarea>
+              </div>
             </div>
 
-            <!-- Field 4: Reason for Sawamani -->
-            <div class="form-group">
-              <label for="sawamaniReason" data-key="labelReason">4. Reason for Sawamani / Sankalp (सवामणि लगाने का कारण / संकल्प) *</label>
-              <textarea id="sawamaniReason" rows="2" required placeholder="e.g. Health recovery, business growth, marriage, debt freedom, gratitude..."></textarea>
+            <!-- Field Card 5: Reason for Sawamani with 1-Tap Preset Chips -->
+            <div class="form-field-card highlight-field-card">
+              <div class="field-card-top">
+                <span class="field-icon-box icon-gold">🪔</span>
+                <div class="field-label-wrap">
+                  <label for="sawamaniReason" data-key="labelReason">4. Sacred Reason / Sankalp (सवामणि का कारण) *</label>
+                  <span class="field-helper-hint">Tap a preset chip below or write your personal prayer</span>
+                </div>
+              </div>
+
+              <!-- ⚡ 1-Tap Quick Selection Chips -->
+              <div class="reason-chips-grid" id="sawamaniReasonChips">
+                <button type="button" class="reason-chip-btn" data-reason="स्वास्थ्य लाभ एवं गंभीर रोग मुक्ति हेतु">
+                  <span>🩺</span> स्वास्थ्य लाभ (Health)
+                </button>
+                <button type="button" class="reason-chip-btn" data-reason="व्यापार, नौकरी व आर्थिक संकट निवारण हेतु">
+                  <span>📈</span> व्यापार वृद्धि (Business)
+                </button>
+                <button type="button" class="reason-chip-btn" data-reason="गृह शांति, पारिवारिक सुख व संकट रक्षा हेतु">
+                  <span>🏠</span> गृह शांति (Family Peace)
+                </button>
+                <button type="button" class="reason-chip-btn" data-reason="शिक्षा, परीक्षा सफलता एवं उज्ज्वल भविष्य हेतु">
+                  <span>🎓</span> करियर/परीक्षा (Career)
+                </button>
+                <button type="button" class="reason-chip-btn" data-reason="मनोकामना पूर्ण होने पर आभार व कृतज्ञता स्वरूप">
+                  <span>🙏</span> कृतज्ञता (Gratitude)
+                </button>
+              </div>
+
+              <div class="field-input-box" style="margin-top: 8px;">
+                <textarea id="sawamaniReason" rows="2" required placeholder="Describe your prayer, Sankalp, or reason for Sawamani offering..."></textarea>
+              </div>
             </div>
 
-            <!-- Pay ₹11,000 Button -->
-            <button type="submit" class="modern-btn btn-primary btn-block btn-lg" id="paySawamaniBtn">
+            <!-- Fixed Pricing Summary Bar -->
+            <div class="price-cta-bar">
+              <div class="price-cta-left">
+                <span class="cta-price-label">Total Seva Amount:</span>
+                <span class="cta-price-val">₹11,000</span>
+                <span class="cta-price-sub">Zero gateway commission • 100% goes to Seva</span>
+              </div>
+              <div class="price-cta-badge">
+                <span>50 KG</span>
+                <strong>BESAN LADOO</strong>
+              </div>
+            </div>
+
+            <!-- Pay ₹11,000 Shimmering Button -->
+            <button type="submit" class="modern-btn btn-primary btn-block btn-shimmer btn-xl" id="paySawamaniBtn">
               <span class="btn-icon">🔒</span>
               <span data-key="btnPaySawamani">Book Sankalp & Pay ₹11,000 ➔</span>
             </button>
@@ -625,26 +744,62 @@
             </select>
           </div>
 
-          <!-- Devotee Name & Mobile -->
-          <div class="form-group">
-            <label for="cartDevoteeName">Devotee Full Name *</label>
-            <input type="text" id="cartDevoteeName" placeholder="e.g. Rahul Verma">
-          </div>
+          <!-- Modern Checkout Form Fields -->
+          <div class="cart-checkout-fields">
+            
+            <div class="form-field-card">
+              <div class="field-card-top">
+                <span class="field-icon-box icon-orange">👤</span>
+                <div class="field-label-wrap">
+                  <label for="cartDevoteeName">Devotee Full Name *</label>
+                  <span class="field-helper-hint">Recipient name for delivery parcel</span>
+                </div>
+              </div>
+              <div class="field-input-box">
+                <input type="text" id="cartDevoteeName" placeholder="e.g. Rahul Verma" autocomplete="name">
+              </div>
+            </div>
 
-          <div class="form-group">
-            <label for="cartDevoteePhone">Mobile / WhatsApp Number *</label>
-            <input type="tel" id="cartDevoteePhone" placeholder="e.g. +91 98765 43210">
-          </div>
+            <div class="form-field-card">
+              <div class="field-card-top">
+                <span class="field-icon-box icon-green">📱</span>
+                <div class="field-label-wrap">
+                  <label for="cartDevoteePhone">Mobile Number *</label>
+                  <span class="field-helper-hint">For Speed Post dispatch SMS alerts</span>
+                </div>
+              </div>
+              <div class="field-input-box with-prefix">
+                <span class="phone-prefix-badge">🇮🇳 +91</span>
+                <input type="tel" id="cartDevoteePhone" placeholder="98765 43210" maxlength="10" autocomplete="tel">
+              </div>
+            </div>
 
-          <div class="form-group">
-            <label for="cartDevoteeEmail">Email Address (For Instant Receipt PDF)</label>
-            <input type="email" id="cartDevoteeEmail" placeholder="e.g. rahul@example.com">
-          </div>
+            <div class="form-field-card">
+              <div class="field-card-top">
+                <span class="field-icon-box icon-blue">✉️</span>
+                <div class="field-label-wrap">
+                  <label for="cartDevoteeEmail">Email Address</label>
+                  <span class="field-helper-hint">For instant official receipt PDF</span>
+                </div>
+              </div>
+              <div class="field-input-box">
+                <input type="email" id="cartDevoteeEmail" placeholder="e.g. rahul@example.com" autocomplete="email">
+              </div>
+            </div>
 
-          <!-- Delivery Address Input -->
-          <div class="form-group">
-            <label for="cartAddressInput" data-key="cartAddressLabel">Complete Delivery Address (डिलीवरी पता) *</label>
-            <textarea id="cartAddressInput" rows="2" placeholder="House No, Landmark, City, District, PIN Code"></textarea>
+            <div class="form-field-card">
+              <div class="field-card-top">
+                <span class="field-icon-box icon-red">📍</span>
+                <div class="field-label-wrap">
+                  <label for="cartAddressInput" data-key="cartAddressLabel">Complete Delivery Address *</label>
+                  <span class="field-helper-hint">House/Flat No, Landmark, City, PIN Code</span>
+                </div>
+              </div>
+              <div class="field-input-box">
+                <textarea id="cartAddressInput" rows="2" placeholder="House No, Landmark, City, District, PIN Code" autocomplete="street-address"></textarea>
+              </div>
+            </div>
+
           </div>
 
           <!-- Bill Breakdown -->
